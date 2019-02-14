@@ -1,0 +1,350 @@
+{% extends "base.html.twig" %}
+{% block classpage %}home{% endblock %}
+{% block title %}SoumSoum{% endblock %}
+{% block homepage %}
+<div class="section_1_title">
+    <div class="big-title">
+        <div class="header-title section wow zoomIn">
+            <h1>Un nouveau label</h1>
+            <a href="{{path('contact')}}">En savoir plus</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block body %}
+
+<section id="news" class="section_6">
+    <div class="section">
+        <div class="title">
+            <div class="">
+                <h1>News</h1>
+                <p>Lastest news</p>
+            </div>
+        </div>
+        <div class="news">
+            <div class="row">
+                <div class="col-6 wow fadeInUpBig">
+                    <a href="{{path('news_show', {'id':1})}}">
+                        <div class="bg_image news_bg_image">
+                            <img src="{{asset('bundles/app/images/malte-wingen-381988-unsplash.jpg')}}" alt="stas-svechnikov">
+                            <div class="overly"></div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6 wow fadeInRightBig">
+                    <div class="news_content news_content_1">
+                        <a href="{{path('news_show', {'id':1})}}">
+                            <h2>NEW DJ</h2>
+                        </a>
+                        <div class="day_num">
+                            <span>19</span>
+                            <div>
+                                <p>Dec</p>
+                                <p>2019</p>
+                            </div>
+                            <p>by admin</p>
+                        </div>
+                        <div class="n_c">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Ut enim ad minim veniam, quis nostrud exercitation
+                            </p>
+                        </div>
+                        <div class="cta">
+                            <a href="{{path('news_show', {'id':1})}}">Lire la suite</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="video" class="section_5">
+    <div class="section_bg_image" style="background-image: url({{asset('bundles/app/images/mink-mingle-109837-unsplash.jpg')}})"></div>
+    <div class="section">
+
+        <div class="title">
+            <div class="">
+                <h1>Video</h1>
+                <p>Lorem ipsum dolor</p>
+            </div>
+        </div>
+        <div class="video">
+            <div class="embed-responsive embed-responsive-16by9">
+                <div class="youtube" id="aJOTlE1K90k" data-src="{{asset('bundles/app/images/edwin-andrade-158050-unsplash.jpg')}}"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="album-release" class="section_2">
+    <div class="section">
+        <div class="title">
+            <div class="">
+                <h1>New Album Release</h1>
+                <p>Lorem ipsum dolor</p>
+            </div>
+        </div>
+        <div class="row j_c">
+            <div class="col cd_block wow fadeInLeftBig">
+                <div class="disc_cover">
+                    <img class="disc" src="{{asset('bundles/app/images/cd-box.png')}}">
+                    <img class="cd" src="{{asset('bundles/app/images/cd.png')}}">
+                </div>
+            </div>
+            <div class="col music wow fadeInRightBig">
+                <div class="mp3 mp3_1">
+                    <span>1.Nicky Jam feat J.Balvin - X EQUIS</span>
+                    <audio controls class="audio1">
+                        <source src="./sounds/Nicky_Jam_feat_J_Balvin-X_EQUIS.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <div class="mp3 mp3_2">
+                    <span>2.Bruno Mars - That's What I Like</span>
+                    <audio controls class="audio1">
+                        <source src="./sounds/Bruno_Mars-That_s_What_I_Like.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <div class="mp3 mp3_3">
+                    <span>3.Cardi - I Like It</span>
+                    <audio controls class="audio1">
+                        <source src="./sounds/Cardi-I_Like_It.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <div class="cta">
+                    <a href="javascript:void(0);">buy album<i class="fa fa-apple" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="sec_2_content">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed
+                ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto .
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="on-tour" class="section_3">
+    <div class="section_bg_image" style="background-image: url({{asset('bundles/app/images/oscar-keys-58399-unsplash.jpg)')}}"></div>
+    <div class="section">
+        <div class="title">
+            <div class="">
+                <h1>On Tour</h1>
+                <p>Lorem ipsum dolor</p>
+            </div>
+        </div>
+        <div class="col tickets wow fadeInUpBig">
+            <div class="row ticket">
+                <div class="col">
+                    <div class="row">
+                        <a class="col-10 ticket-link" href="{{path('event_show', {'id':1})}}">
+                            <div class="day">
+                                <div class="day_num">
+                                    <span>19</span>
+                                    <div>
+                                        <p>Dec</p>
+                                        <p>2019</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <p><span>Coachella Music Festival</span> // <span>Warsaw, Poland</span></p>
+                            </div>
+                        </a>
+                        <div class="col-2 buy">
+                            <a href="{{path('event_show', {'id':1})}}">Buy Ticket</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ticket">
+                <div class="col">
+                    <div class="row">
+                        <a class="col-10 ticket-link" href="{{path('event_show', {'id':1})}}">
+                            <div class="day">
+                                <div class="day_num">
+                                    <span>12</span>
+                                    <div>
+                                        <p>Dec</p>
+                                        <p>2020</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <p><span>Wakestock Festival</span> // <span>Warsaw, Poland</span></p>
+                            </div>
+                        </a>
+                        <div class="col-2 buy">
+                            <a href="{{path('event_show', {'id':1})}}">Buy Ticket</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ticket">
+                <div class="col">
+                    <div class="row">
+                        <a class="col-10 ticket-link" href="{{path('event_show', {'id':1})}}">
+                            <div class="day">
+                                <div class="day_num">
+                                    <span>12</span>
+                                    <div>
+                                        <p>Dec</p>
+                                        <p>2020</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <p><span>Lollapalooza Festival</span> // <span>Berlin, Germany</span></p>
+                            </div>
+                        </a>
+                        <div class="col-2 buy">
+                            <a href="{{path('event_show', {'id':1})}}">Buy Ticket</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ticket">
+                <div class="col">
+                    <div class="row">
+                        <a class="col-10 ticket-link" href="{{path('event_show', {'id':1})}}">
+                            <div class="day">
+                                <div class="day_num">
+                                    <span>12</span>
+                                    <div>
+                                        <p>Dec</p>
+                                        <p>2020</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <p><span>Wakestock Festival</span> // <span>Copenhagen, Denmark</span></p>
+                            </div>
+                        </a>
+                        <div class="col-2 buy">
+                            <a href="{{path('event_show', {'id':1})}}">Buy Ticket</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ticket">
+                <div class="col">
+                    <div class="row">
+                        <a class="col-10 ticket-link" href="{{path('event_show', {'id':1})}}">
+                            <div class="day">
+                                <div class="day_num">
+                                    <span>16</span>
+                                    <div>
+                                        <p>Dec</p>
+                                        <p>2020</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <p><span>Crew Stadium</span> // <span>Berlin, Germany</span></p>
+                            </div>
+                        </a>
+                        <div class="col-2 buy">
+                            <a href="{{path('event_show', {'id':1})}}">Buy Ticket</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ticket">
+                <div class="col">
+                    <div class="row">
+                        <a class="col-10 ticket-link" href="{{path('event_show', {'id':1})}}">
+                            <div class="day">
+                                <div class="day_num">
+                                    <span>16</span>
+                                    <div>
+                                        <p>Dec</p>
+                                        <p>2020</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <p><span>Columbianhalle</span> // <span>Berlin, Germany</span></p>
+                            </div>
+                        </a>
+                        <div class="col-2 buy">
+                            <p>Sold Out!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ticket">
+                <div class="col">
+                    <div class="row">
+                        <a class="col-10 ticket-link" href="{{path('event_show', {'id':1})}}">
+                            <div class="day">
+                                <div class="day_num">
+                                    <span>19</span>
+                                    <div>
+                                        <p>Dec</p>
+                                        <p>2020</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <p><span>Torwar</span> // <span>Warsaw, Poland</span></p>
+                            </div>
+                        </a>
+                        <div class="col-2 buy">
+                            <p>Cancelled</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact-us" class="section_8" style="background-image: url({{asset('bundles/app/images/jason-rosewell-60014-unsplash.jpg')}})">
+    <div class="overly"></div>
+    <div class="section">
+
+        <div class="title">
+            <div class="">
+                <h1>Contact Us</h1>
+                <p>Lorem ipsum dolor</p>
+            </div>
+        </div>
+        <div class="form">
+            <form>
+                <div class="row fild_1">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="name">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block javascripts %}
+<script>
+jQuery(function($) {
+    $('.home #header').fullHeight();
+    windowElement.on('scroll', function() {
+        var st1 = $(this).scrollTop();
+        $("#header .bg_image").css({
+            "background-position-y": (st1 / 3)
+        });
+        var st2 = $(this).scrollTop();
+        $("#on-tour .section_bg_image").css({
+            "background-position-y": (-st2 / 20 + 100)
+        });
+    });
+});
+</script>
+{% endblock %}

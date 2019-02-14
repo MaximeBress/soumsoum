@@ -1,0 +1,148 @@
+{% extends "base.html.twig" %}
+{% block classname %}single-product{% endblock %}
+{% block title %}Store{% endblock %}
+{% block body %}
+    <section id="page-title">
+        <div class="global-title wow zoomIn" style="visibility: visible; animation-name: zoomIn;">
+            <h1>Store</h1>
+        </div>
+    </section>
+    <section id="shop-contanier">
+        <div class="section">
+            <div class="results">
+                <div class="results-text">
+                    <span>Showing all 6 results</span>
+                </div>
+                <div class="results-select">
+                    <div class="btn-group">
+                        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);">Sort by popularity<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">
+                                <a href="javascript:void(0);">Category 1</a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="javascript:void(0);">Category 2</a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="javascript:void(0);">Category 3</a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="javascript:void(0);">Category 4</a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="javascript:void(0);">Category 5</a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="javascript:void(0);">Other</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="shop-items">
+                <div class="s-item wow fadeInUp">
+                    <div class="s-item-image">
+                        <a href="{{path('store_show', {'id':1})}}">
+                            <img src="{{asset('bundles/app/images/Men-SS-Stripe-T-Shirt-Navy-1.png')}}" alt="Image">
+                        </a>
+                    </div>
+                    <div class="s-item-name">
+                        <a href="{{path('store_show', {'id':1})}}">
+                            <h2>Textured Sweatshirt</h2>
+                        </a>
+                        <p>
+                            $1,000<sup>.00</sup>
+                        </p>
+                        <div class="ad-to-card-button">
+                            <a href="javascript:void(0);">Add To Card</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="s-item wow fadeInUp">
+                    <div class="s-item-image">
+                        <a href="{{path('store_show', {'id':1})}}"><img src="{{asset('bundles/app/images/Men-SS-Stripe-T-Shirt-Navy-1.png')}}" alt="Image"></a>
+                    </div>
+                    <div class="s-item-name">
+                        <a href="{{path('store_show', {'id':1})}}">
+                            <h2>Guns N Roses</h2>
+                        </a>
+                        <p>
+                            $1,000<sup>.00</sup>
+                        </p>
+                        <div class="ad-to-card-button">
+                            <a href="javascript:void(0);">Add To Card</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="s-item wow fadeInUp">
+                    <div class="s-item-image">
+                        <a href="{{path('store_show', {'id':1})}}">
+                            <img src="{{asset('bundles/app/images/Men-SS-Stripe-T-Shirt-Navy-1.png')}}" alt="Image">
+                        </a>
+                    </div>
+                    <div class="s-item-name">
+                        <a href="{{path('store_show', {'id':1})}}">
+                            <h2>Printed T-Shirt</h2>
+                        </a>
+                        <p>$899<sup>.00</sup>
+                            <span class="sale">$1000<sup>.00</sup>
+                            </span>
+                        </p>
+                        <div class="ad-to-card-button">
+                            <a href="javascript:void(0);">Add To Card</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="s-item wow fadeInUp">
+                    <div class="s-item-image">
+                        <a href="{{path('store_show', {'id':1})}}"><img src="{{asset('bundles/app/images/Men-SS-Stripe-T-Shirt-Navy-1.png')}}" alt="Image"></a>
+                    </div>
+                    <div class="s-item-name">
+                        <a href="{{path('store_show', {'id':1})}}">
+                            <h2>T-Shirt With Embroidered</h2>
+                        </a>
+                        <p>$1,000<sup>.00</sup>
+                        </p>
+                        <div class="ad-to-card-button">
+                            <a href="javascript:void(0);">Add To Card</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="s-item wow fadeInUp">
+                    <div class="s-item-image">
+                        <a href="{{path('store_show', {'id':1})}}"><img src="{{asset('bundles/app/images/Men-SS-Stripe-T-Shirt-Navy-1.png')}}" alt="Image"></a>
+                    </div>
+                    <div class="s-item-name">
+                        <a href="{{path('store_show', {'id':1})}}">
+                            <h2>T-Shirt With Slogan</h2>
+                        </a>
+                        <p>$1,000<sup>.00</sup>
+                        </p>
+                        <div class="ad-to-card-button">
+                            <a href="javascript:void(0);">Add To Card</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="s-item wow fadeInUp">
+                    <div class="s-item-image">
+                        <a href="{{path('store_show', {'id':1})}}"><img src="{{asset('bundles/app/images/Men-SS-Stripe-T-Shirt-Navy-1.png')}}" alt="Image"></a>
+                    </div>
+                    <div class="s-item-name">
+                        <a href="{{path('store_show', {'id':1})}}">
+                            <h2>Nautical Print T-Shirt</h2>
+                        </a>
+                        <p>$1,000<sup>.00</sup>
+                        </p>
+                        <div class="ad-to-card-button">
+                            <a href="javascript:void(0);">Add To Card</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+{% block javascripts %}
+    <script></script>
+{% endblock %}

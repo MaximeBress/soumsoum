@@ -1,0 +1,84 @@
+{% extends "base.html.twig" %}
+{% block title %}Coachella Music Festival{% endblock %}
+{% block body %}
+<section id="page-title">
+    <div class="global-title wow zoomIn">
+        <h1>Coachella Music Festival</h1>
+    </div>
+</section>
+<section id="events-banner">
+    <div class="section">
+        <div class="slider-info">
+            <div class="events-slider">
+                <img class="" src="{{asset('bundles/app/images/austin-edwards-679508-unsplash.jpg')}}" alt="First slide">
+            </div>
+            <div class="events-info">
+                <div class="events_date">
+                    <p>
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                        <span>August 20, 2019</span>
+                    </p>
+                    <p>
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <span>9:15 pm</span>
+                    </p>
+                    <p>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <span>Indio, California</span>
+                    </p>
+                    <p>
+                        <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                        <span>Coachella Music Festival</span>
+                    </p>
+                </div>
+                <div class="event-tickets">
+                    <a href="javascript:void(0);">Buy Ticket</a>
+                    <a href="javascript:void(0);">EVENT ON FACEBOOK</a>
+                </div>
+                <div class="event-text">
+                    <div class="single-events-text">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcos laboris nisis ut aliquip ex ea commodo consequat. Duis aute irure
+                            dolor in reprehenderit in voluptate velit esse cillum dolore egiat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore egiat
+                        </p>
+                    </div>
+                    <div class="social-icons">
+                        <span>SHARE :</span>
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-dribbble" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-pinterest" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="text-and-video">
+    <div class="discography_banner_background_image">
+        <div class="overly"></div>
+        <img src="{{asset('bundles/app/images/edwin-andrade-158050-unsplash.jpg')}}" alt="">
+    </div>
+    <div class="section">
+        <div class="embed-responsive embed-responsive-16by9">
+            <div class="youtube" id="2in8XqiElwc" data-src="{{asset('bundles/app/images/dane-deaner-305151-unsplash.jpg')}}"><img src="resources/images/tyler-nix-488905-unsplash.png" class="thumb">
+                <div class="play"></div>
+            </div>
+        </div>
+        <section id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d89283.54984309021!2d-116.33181576651593!3d33.73430483012885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80daf43543dfd785%3A0x166ce7cda7235031!2sIndio%2C+CA!5e0!3m2!1sen!2s!4v1537283723514" allowfullscreen=""></iframe>
+        </section>
+    </div>
+</section>
+{% endblock %}
+{% block javascripts %}
+    <script></script>
+{% endblock %}

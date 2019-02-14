@@ -1,0 +1,304 @@
+{% extends "base.html.twig" %}
+{% block title %}1984{% endblock %}
+{% block body %}
+<section id="page-title">
+    <div class="global-title wow zoomIn" style="visibility: visible; animation-name: zoomIn;">
+        <h1>
+            1984<br />
+            <small>Eye to eye</small>
+        </h1>
+    </div>
+</section>
+<section id="video-post">
+    <div class="section">
+        <div class="embed-responsive embed-responsive-16by9">
+            <div class="youtube" id="aJOTlE1K90k" data-src="{{asset('bundles/app/images/edwin-andrade-158050-unsplash.jpg')}}"></div>
+        </div>
+    </div>
+</section>
+<section id="discography-post">
+    <div class="discography_banner_background_image">
+        <div class="overly"></div>
+        <img src="{{asset('bundles/app/images/jack-hamilton-135654-unsplash.jpg')}}" alt="">
+    </div>
+    <div class="section">
+        <div class="row j_c">
+            <div class="col sec_2_content wow fadeInLeftBig" style="visibility: visible; animation-name: fadeInLeftBig;">
+                <div class="cover-image">
+                    <img src="{{asset('bundles/app/images/Cover-Image.png')}}" alt="Cover Image">
+                </div>
+                <div class="music_date">
+                    <p>
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <span>August 20, 2019</span></p>
+                    <p>
+                        <i class="fa fa-music" aria-hidden="true"></i>
+                        <span>Tedeschi Trucks Band</span></p>
+                    <p>
+                        <i class="fa fa-tags" aria-hidden="true"></i>
+                        <span>Masterworks</span></p>
+                </div>
+                <div class="music_after">
+                    <p>Producer: Jim Scott, Derek Trucks</p>
+                    <p>Number of discs: 1</p>
+                </div>
+                <div class="music_shop">
+                    <a href="javascript:void(0);" class="shop_cta">AMAZON</a>
+                    <a href="javascript:void(0);" class="shop_cta">ITUNES</a>
+                    <a href="javascript:void(0);" class="shop_cta">SOUNDCLOUD</a>
+                    <a href="javascript:void(0);" class="shop_cta">GOOGLE PLAY</a>
+                </div>
+            </div>
+            <div class="col music wow fadeInRightBig" style="visibility: visible; animation-name: fadeInRightBig;">
+                <div class="mp3 mp3_1" id="mp3_1">
+                    <div tabindex="0" class="plyr plyr--audio plyr--stopped plyr--ready">
+                        <audio class="audio1 plyr--setup" onended="playerItemEnd()"><source src="resources/sounds/Bruno_Mars-That_s_What_I_Like.mp3" type="audio/mpeg"></audio>
+                        <div class="plyr__controls">
+                            <button type="button" data-plyr="play" aria-label="Play">
+                                <svg>
+                                    <use xlink:href="#plyr-play"></use>
+                                </svg>
+                                <span class="plyr__sr-only">Play</span>
+                            </button>
+                            <button type="button" data-plyr="pause">
+                                <svg>
+                                    <use xlink:href="#plyr-pause"></use>
+                                </svg>
+                                <span class="plyr__sr-only">Pause</span>
+                            </button>
+                            <span class="plyr__progress">
+                                <label for="seek2582" class="plyr__sr-only">Seek</label>
+                                <input id="seek2582" class="plyr__progress--seek" type="range" min="0" max="100" step="0.1" value="0" data-plyr="seek">
+                                <progress class="plyr__progress--played" max="100" value="0" role="presentation"></progress>
+                                <progress class="plyr__progress--buffer" max="100" value="0">
+                                    <span>0</span>% buffered
+                                </progress>
+                                <span class="plyr__tooltip">00:00</span>
+                            </span>
+                            <span class="plyr__time">
+                                <span class="plyr__sr-only">Current time</span>
+                                <span class="plyr__time--current">00:00</span>
+                            </span>
+                            <span class="plyr__time">
+                                <span class="plyr__sr-only">Duration</span>
+                                <span class="plyr__time--duration">00:29</span>
+                            </span>
+                            <button type="button" data-plyr="mute" aria-pressed="false">
+                                <svg class="icon--muted">
+                                    <use xlink:href="#plyr-muted"></use>
+                                </svg>
+                                <svg>
+                                    <use xlink:href="#plyr-volume"></use>
+                                </svg>
+                                <span class="plyr__sr-only">Toggle Mute</span>
+                            </button>
+                            <span class="plyr__volume">
+                                <label for="volume2582" class="plyr__sr-only">Volume</label>
+                                <input id="volume2582" class="plyr__volume--input" type="range" min="0" max="10" value="10" data-plyr="volume">
+                                <progress class="plyr__volume--display" max="10" value="10" role="presentation"></progress>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="playlist" id="playlist">
+                    <div class="playlist-title">
+                        <h2>Surprise Without Flaws</h2>
+                    </div>
+                    <div class="music_line mus-1">
+                        <div class="play-pause" data-src="resources/sounds/Bruno_Mars-That_s_What_I_Like.mp3">
+                            <svg class="play-mp3" x="0px" y="0px" viewbox="0 0 357 357">
+                                <polygon points="38.25,0 38.25,357 318.75,178.5" fill="#FFFFFF"></polygon>
+                            </svg>
+                            <svg class="pause-mp3" x="0px" y="0px" viewbox="0 0 47.607 47.607" style="display: none;">
+                                <path d="M17.991,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631C4.729,2.969,7.698,0,11.36,0   l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                                <path d="M42.877,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631   C29.616,2.969,32.585,0,36.246,0l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                            </svg>
+                        </div>
+                        <span class="music-name">01. Bruno Mars - That's What I Like</span>
+                        <div class="player-grig"></div>
+                        <span class="plyr__time">
+                            <span class="plyr__time--duration">0:29</span>
+                        </span>
+                    </div>
+                    <div class="music_line mus-2">
+                        <div class="play-pause" data-src="resources/sounds/Cardi-I_Like_It.mp3">
+                            <svg class="play-mp3" x="0px" y="0px" viewbox="0 0 357 357">
+                                <polygon points="38.25,0 38.25,357 318.75,178.5" fill="#FFFFFF"></polygon>
+                            </svg>
+                            <svg class="pause-mp3" x="0px" y="0px" viewbox="0 0 47.607 47.607" style="display: none;">
+                                <path d="M17.991,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631C4.729,2.969,7.698,0,11.36,0   l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                                <path d="M42.877,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631   C29.616,2.969,32.585,0,36.246,0l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                            </svg>
+                        </div>
+                        <span class="music-name">02. Cardi - I Like It</span>
+                        <div class="player-grig"></div>
+                        <span class="plyr__time">
+                            <span class="plyr__time--duration">0:28</span>
+                        </span>
+                    </div>
+                    <div class="music_line mus-3">
+                        <div class="play-pause" data-src="resources/sounds/Ed_Sheeran-Perfect.mp3">
+                            <svg class="play-mp3" x="0px" y="0px" viewbox="0 0 357 357">
+                                <polygon points="38.25,0 38.25,357 318.75,178.5" fill="#FFFFFF"></polygon>
+                            </svg>
+                            <svg class="pause-mp3" x="0px" y="0px" viewbox="0 0 47.607 47.607" style="display: none;">
+                                <path d="M17.991,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631C4.729,2.969,7.698,0,11.36,0   l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                                <path d="M42.877,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631   C29.616,2.969,32.585,0,36.246,0l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                            </svg>
+                        </div>
+                        <span class="music-name">03. Ed Sheeran - Perfect</span>
+                        <div class="player-grig"></div>
+                        <span class="plyr__time">
+                            <span class="plyr__time--duration">0:28</span>
+                        </span>
+                    </div>
+                    <div class="music_line mus-4">
+                        <div class="play-pause" data-src="resources/sounds/Ed_Sheeran-Shape_of_You.mp3">
+                            <svg class="play-mp3" x="0px" y="0px" viewbox="0 0 357 357">
+                                <polygon points="38.25,0 38.25,357 318.75,178.5" fill="#FFFFFF"></polygon>
+                            </svg>
+                            <svg class="pause-mp3" x="0px" y="0px" viewbox="0 0 47.607 47.607" style="display: none;">
+                                <path d="M17.991,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631C4.729,2.969,7.698,0,11.36,0   l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                                <path d="M42.877,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631   C29.616,2.969,32.585,0,36.246,0l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                            </svg>
+                        </div>
+                        <span class="music-name">04. Ed Sheeran - Shape of You</span>
+                        <div class="player-grig"></div>
+                        <span class="plyr__time">
+                            <span class="plyr__time--duration">0:29</span>
+                        </span>
+                    </div>
+                    <div class="music_line mus-5">
+                        <div class="play-pause" data-src="resources/sounds/Imagine_Dragons-Believer.mp3">
+                            <svg class="play-mp3" x="0px" y="0px" viewbox="0 0 357 357">
+                                <polygon points="38.25,0 38.25,357 318.75,178.5" fill="#FFFFFF"></polygon>
+                            </svg>
+                            <svg class="pause-mp3" x="0px" y="0px" viewbox="0 0 47.607 47.607" style="display: none;">
+                                <path d="M17.991,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631C4.729,2.969,7.698,0,11.36,0   l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                                <path d="M42.877,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631   C29.616,2.969,32.585,0,36.246,0l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                            </svg>
+                        </div>
+                        <span class="music-name">05. Imagine Dragons - Believer</span>
+                        <div class="player-grig"></div>
+                        <span class="plyr__time">
+                            <span class="plyr__time--duration">0:22</span>
+                        </span>
+                    </div>
+                    <div class="music_line mus-6">
+                        <div class="play-pause" data-src="resources/sounds/Imagine_Dragons-Thunder.mp3">
+                            <svg class="play-mp3" x="0px" y="0px" viewbox="0 0 357 357">
+                                <polygon points="38.25,0 38.25,357 318.75,178.5" fill="#FFFFFF"></polygon>
+                            </svg>
+                            <svg class="pause-mp3" x="0px" y="0px" viewbox="0 0 47.607 47.607" style="display: none;">
+                                <path d="M17.991,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631C4.729,2.969,7.698,0,11.36,0   l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                                <path d="M42.877,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631   C29.616,2.969,32.585,0,36.246,0l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                            </svg>
+                        </div>
+                        <span class="music-name">06. Imagine Dragons - Thunder</span>
+                        <div class="player-grig"></div>
+                        <span class="plyr__time">
+                            <span class="plyr__time--duration">0:28</span>
+                        </span>
+                    </div>
+                    <div class="music_line mus-7">
+                        <div class="play-pause" data-src="resources/sounds/J_Balvin-Mi_Gente.mp3">
+                            <svg class="play-mp3" x="0px" y="0px" viewbox="0 0 357 357">
+                                <polygon points="38.25,0 38.25,357 318.75,178.5" fill="#FFFFFF"></polygon>
+                            </svg>
+                            <svg class="pause-mp3" x="0px" y="0px" viewbox="0 0 47.607 47.607" style="display: none;">
+                                <path d="M17.991,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631C4.729,2.969,7.698,0,11.36,0   l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                                <path d="M42.877,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631   C29.616,2.969,32.585,0,36.246,0l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                            </svg>
+                        </div>
+                        <span class="music-name">07. J.Balvin - Mi Gente</span>
+                        <div class="player-grig"></div>
+                        <span class="plyr__time">
+                            <span class="plyr__time--duration">0:27</span>
+                        </span>
+                    </div>
+                    <div class="music_line mus-8">
+                        <div class="play-pause" data-src="resources/sounds/Jason_Derulo_feat_Nicki_Minaj-Swalla.mp3">
+                            <svg class="play-mp3" x="0px" y="0px" viewbox="0 0 357 357">
+                                <polygon points="38.25,0 38.25,357 318.75,178.5" fill="#FFFFFF"></polygon>
+                            </svg>
+                            <svg class="pause-mp3" x="0px" y="0px" viewbox="0 0 47.607 47.607" style="display: none;">
+                                <path d="M17.991,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631C4.729,2.969,7.698,0,11.36,0   l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                                <path d="M42.877,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631   C29.616,2.969,32.585,0,36.246,0l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                            </svg>
+                        </div>
+                        <span class="music-name">08. Jason Derulo feat N.Minaj - Swalla</span>
+                        <div class="player-grig"></div>
+                        <span class="plyr__time">
+                            <span class="plyr__time--duration">0:29</span>
+                        </span>
+                    </div>
+                    <div class="music_line mus-9">
+                        <div class="play-pause" data-src="resources/sounds/Nicky_Jam_feat_J_Balvin-X_EQUIS.mp3">
+                            <svg class="play-mp3" x="0px" y="0px" viewbox="0 0 357 357">
+                                <polygon points="38.25,0 38.25,357 318.75,178.5" fill="#FFFFFF"></polygon>
+                            </svg>
+                            <svg class="pause-mp3" x="0px" y="0px" viewbox="0 0 47.607 47.607" style="display: none;">
+                                <path d="M17.991,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631C4.729,2.969,7.698,0,11.36,0   l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                                <path d="M42.877,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631   C29.616,2.969,32.585,0,36.246,0l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                            </svg>
+                        </div>
+                        <span class="music-name">09. Nicky Jam feat J.Balvin - X EQUIS</span>
+                        <div class="player-grig"></div>
+                        <span class="plyr__time">
+                            <span class="plyr__time--duration">0:29</span>
+                        </span>
+                    </div>
+                    <div class="music_line mus-10">
+                        <div class="play-pause" data-src="resources/sounds/OneRepublic_-_Counting_Stars.mp3">
+                            <svg class="play-mp3" x="0px" y="0px" viewbox="0 0 357 357">
+                                <polygon points="38.25,0 38.25,357 318.75,178.5" fill="#FFFFFF"></polygon>
+                            </svg>
+                            <svg class="pause-mp3" x="0px" y="0px" viewbox="0 0 47.607 47.607" style="display: none;">
+                                <path d="M17.991,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631C4.729,2.969,7.698,0,11.36,0   l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                                <path d="M42.877,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631   C29.616,2.969,32.585,0,36.246,0l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z" fill="#FFFFFF"></path>
+                            </svg>
+                        </div>
+                        <span class="music-name">10. OneRepublic - Counting Stars</span>
+                        <div class="player-grig"></div>
+                        <span class="plyr__time">
+                            <span class="plyr__time--duration">0:18</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="discography-text">
+    <div class="section">
+        <div class="discography_description">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcos laboris nisis ut aliquip ex ea commodo consequat. Duis aute irure
+                dolor in reprehenderit in voluptate velit esse cillum dolore egiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id it laborum. Sed ut perspiciatis unde omnis iste natus error sit
+                voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore ut labore et dolore now is the great working with travlling magnam aliquam quaerat voluptatem.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcos laboris nisis ut aliquip ex ea commodo consequat.
+            </p>
+        </div>
+        <div class="social-icons">
+            <span>SHARE :</span>
+            <a href="javascript:void(0);">
+                <i class="fa fa-dribbble" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);">
+                <i class="fa fa-pinterest" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block javascripts %}
+    <script></script>
+{% endblock %}

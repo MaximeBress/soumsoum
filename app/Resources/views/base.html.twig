@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+
+        <title>SoumSoum - {% block title %}{% endblock %}</title>
+        <link rel="apple-touch-icon" sizes="57x57" href="{{asset('bundles/app/images/favicon/apple-icon-57x57.png')}}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{asset('bundles/app/images/favicon/apple-icon-60x60.png')}}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{asset('bundles/app/images/favicon/apple-icon-72x72.png')}}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{asset('bundles/app/images/favicon/apple-icon-76x76.png')}}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{asset('bundles/app/images/favicon/apple-icon-114x114.png')}}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{asset('bundles/app/images/favicon/apple-icon-120x120.png')}}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{asset('bundles/app/images/favicon/apple-icon-144x144.png')}}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{asset('bundles/app/images/favicon/apple-icon-152x152.png')}}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{asset('bundles/app/images/favicon/apple-icon-180x180.png')}}">
+        <link rel="icon" type="image/png" sizes="192x192"  href="{{asset('bundles/app/images/favicon/android-icon-192x192.png')}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('bundles/app/images/favicon/favicon-32x32.png')}}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{asset('bundles/app/images/favicon/favicon-96x96.png')}}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset('bundles/app/images/favicon/favicon-16x16.png')}}">
+        <link rel="manifest" href="{{asset('bundles/app/images/favicon/manifest.json')}}">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="{{asset('bundles/app/images/favicon/ms-icon-144x144.png')}}">
+        <meta name="theme-color" content="#ffffff">
+
+        <link href="{{asset('bundles/app/css/font-awesome.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/app/css/bootstrap.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/app/css/animate.css')}}" rel="stylesheet" type="text/css"/>
+        <link href="{{asset('bundles/app/css/player.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/app/css/bootstrap-formhelpers.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/app/css/chosen.css')}}" rel="stylesheet">
+        <link href="{{asset('tmp/style.css')}}" rel="stylesheet">
+        <!-- <link href="{{asset('bundles/app/css/style.css')}}" rel="stylesheet"> -->
+
+        <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body class="{% block classpage %}{% endblock %} home-demo-2 demo-2-bg">
+        <div id="preloader"></div>
+
+        <section id="header">
+            <div class="nav-menu nav-demo-1">
+                <div class="section_bg_image" style="background-image: url('{{asset('bundles/app/images/lee-campbell-240277-unsplash.jpg')}}')"></div>
+                <ul class="nav flex-column section">
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="{{path('homepage')}}">home</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('artists')}}">artists</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('releases')}}">releases</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('news')}}">news</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('events')}}">events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('about')}}">about</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('store')}}">store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('contact')}}">contact</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="http://lifeinsys.com/item/beatswavehtml/demo3/01-Home.html">template</a>
+                    </li> -->
+                </ul>
+                <div class="overly"></div>
+            </div>
+            <div class="bg_image" style="background-image: url('{{asset('bundles/app/images/namroud-gorguis-253765-unsplash.jpg')}}')"></div>
+            <div class="header-continer">
+                <div class="section">
+                    <div class="logo">
+                        <a href="{{path('homepage')}}">
+                            <img class="white-logo" src="{{asset('bundles/app/images/logo/logo_soumsoum.png')}}" alt="Logo">
+                        </a>
+                    </div>
+                    <div class="nav-menu nav-demo-2">
+                        <ul class="nav flex-column">
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="{{path('homepage')}}">home</a>
+                            </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{path('artists')}}">artists</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{path('releases')}}">releases</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{path('news')}}">news</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{path('events')}}">events</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{path('about')}}">about</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{path('store')}}">store</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{path('contact')}}">contact</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="http://lifeinsys.com/item/beatswavehtml/demo3/01-Home.html">template</a>
+                            </li> -->
+                        </ul>
+                    </div>
+                    <div class="header_items">
+                        <div class="menu_icon">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 15.642 15.642" enable-background="new 0 0 15.642 15.642" width="21" height="21">
+                                <path fill-rule="evenodd" d="M8.882,7.821l6.541-6.541c0.293-0.293,0.293-0.768,0-1.061  c-0.293-0.293-0.768-0.293-1.061,0L7.821,6.76L1.28,0.22c-0.293-0.293-0.768-0.293-1.061,0c-0.293,0.293-0.293,0.768,0,1.061  l6.541,6.541L0.22,14.362c-0.293,0.293-0.293,0.768,0,1.061c0.147,0.146,0.338,0.22,0.53,0.22s0.384-0.073,0.53-0.22l6.541-6.541  l6.541,6.541c0.147,0.146,0.338,0.22,0.53,0.22c0.192,0,0.384-0.073,0.53-0.22c0.293-0.293,0.293-0.768,0-1.061L8.882,7.821z" fill="#FFFFFF" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% block homepage %}{% endblock %}
+        </section>
+        {% block body %}{% endblock %}
+        <footer id="footer">
+            <div class="bg_image"></div>
+            <div class="footer-overly"></div>
+            <div class="section">
+                <div class="row footer">
+                    <div class="col">
+                        <h2>ABOUT SOUMSOUM</h2>
+                        <p>Lorem ipsum dolor sit amet,
+                            consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in
+                            reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. </p>
+                    </div>
+                    <div class="col">
+                        <div class="f-content">
+                            <h2>UPCOMING EVENT</h2>
+                            <div class="day_num">
+                                <a href="05-Events-Single-Events.html">
+                                    <span>19</span>
+                                    <div>
+                                        <p>Dec</p>
+                                        <p>2019</p>
+                                    </div>
+                                    <p>Torwar Festival</p>
+                                </a>
+                            </div>
+                            <div class="day_num">
+                                <a href="05-Events-Single-Events.html">
+                                    <span>12</span>
+                                    <div>
+                                        <p>Dec</p>
+                                        <p>2020</p>
+                                    </div>
+                                    <p>Lavaza Festival</p>
+                                </a>
+                            </div>
+                            <div class="day_num">
+                                <a href="05-Events-Single-Events.html">
+                                    <span>15</span>
+                                    <div>
+                                        <p>Dec</p>
+                                        <p>2020</p>
+                                    </div>
+                                    <p>Ladesno Festival</p>
+                                </a>
+                            </div>
+                            <div class="day_num">
+                                <a href="05-Events-Single-Events.html">
+                                    <span>12</span>
+                                    <div>
+                                        <p>Dec</p>
+                                        <p>2020</p>
+                                    </div>
+                                    <p>Coachella Festival</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="footer_logo">
+                            <img src="{{asset('bundles/app/images/logo/logo_soumsoum.png')}}" alt="Logo">
+                        </div>
+                        <div class="info">
+                            <p class="main_p">175 Grand Central Parkway</p>
+                            <p>Phone: +00 (0) 101 1010 101</p>
+                            <p>Fax: +00 (0) 101 1010 101</p>
+                            <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2e5d5b5e5e415c5a6e4c4b5a5d004d4143">[email&#160;protected]</a></p>
+                        </div>
+                        <div class="folow">
+                            <ul>
+                                <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                                <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href=""><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href=""><i class="fa fa-tripadvisor"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row f_1">
+                <div class="col">
+                    <div class="copyright">
+                        <span>Copyright © SoumSoum 2019</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="{{asset('bundles/app/js/jquery-3.3.1.slim.min.js')}}"></script>
+        <script src="{{asset('bundles/app/js/popper.min.js')}}"></script>
+        <script src="{{asset('bundles/app/js/bootstrap.js')}}"></script>
+        <script src="{{asset('bundles/app/js/chosen.jquery.js')}}"></script>
+        <script src="{{asset('bundles/app/js/wow.js')}}"></script>
+        <script src="{{asset('bundles/app/js/html5media.min.js')}}"></script>
+        <script src="{{asset('bundles/app/js/player.js')}}"></script>
+        <script src="{{asset('bundles/app/js/youtube-embed.js')}}"></script>
+        <script src="{{asset('bundles/app/js/modernizr.custom.js')}}"></script>
+        <script src="{{asset('bundles/app/js/jquery.flexslider.min.js')}}"></script>
+        <script src="{{asset('bundles/app/js/imagesloaded.pkgd.min.js')}}"></script>
+        <script src="{{asset('bundles/app/js/masonry.pkgd.min.js')}}"></script>
+        <script src="{{asset('bundles/app/js/cbpGridGallery.js')}}"></script>
+        <script src="{{asset('bundles/app/js/bootstrap-formhelpers.js')}}"></script>
+        <script src="{{asset('bundles/app/js/magnify.js')}}"></script>
+        <script src="{{asset('bundles/app/js/custom.js')}}"></script>
+        <div class="grid" style="display:none;"></div>
+        <script>
+            $(document).ready(function() {
+                var location = window.location.href.split('/');
+                $('#header .nav-menu.nav-demo-2 .nav>li>a').each(function() {
+                    var url = $(this).attr('href').split('/');
+                    if (location[4] == url[2]) {
+                        $(this).addClass('active')
+                    }
+                })
+            })
+        </script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

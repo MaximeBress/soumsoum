@@ -1,0 +1,3 @@
+user_login_redirect:
+    path:     /safe-login
+    defaults: { _controller: UserBundle:Index:redirect }

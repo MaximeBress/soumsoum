@@ -1672,13 +1672,11 @@ a.anim_border::after {
 .form form input {
     height: 55px;
     color: #fff;
-    text-transform: capitalize
 }
 
 .form form textarea {
     height: 295px;
     color: #fff;
-    text-transform: capitalize
 }
 
 .form form input,
@@ -5622,9 +5620,14 @@ span.sale:after {
 }
 
 .custom-control-label {
-    cursor: pointer
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+    font-style: italic;
 }
-
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: #04CC82;
+}
 .pay-text p {
     color: #888;
     font-size: 16px;

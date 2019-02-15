@@ -2,6 +2,8 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@BackBundle/Resources/config/services.yml" }
+    - { resource: "@UserBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -30,6 +32,9 @@ framework:
     assets: ~
     php_errors:
         log: true
+    templating:
+        engines: ['twig']
+
 
 # Twig Configuration
 twig:
@@ -61,11 +66,31 @@ doctrine:
 # Swiftmailer Configuration
 swiftmailer:
     transport: '%mailer_transport%'
+    auth_mode: '%mailer_auth_mode%'
     host: '%mailer_host%'
+    port: '%mailer_port%'
     username: '%mailer_user%'
     password: '%mailer_password%'
+    encryption: '%mailer_encryption%'
     spool: { type: memory }
 
 sensio_framework_extra:
    router:
         annotations: false
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: BackBundle\Entity\User
+    from_email:
+        address: maxime.bressange@gmail.com
+        sender_name: SoumSoum
+    service:
+        mailer: fos_user.mailer.twig_swift
+    registration:
+        confirmation:
+            enabled: true
+            from_email:
+                address: noreply@soumsoum.com
+                sender_name: SoumSoum
+            template: email/registration.html.twig

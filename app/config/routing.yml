@@ -1,3 +1,15 @@
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /secure/
+
+back:
+    resource: "@BackBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

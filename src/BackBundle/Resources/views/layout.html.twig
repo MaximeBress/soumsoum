@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}SoumSoum{% endblock %}</title>
+        <link rel="apple-touch-icon" sizes="57x57" href="{{asset('bundles/app/images/favicon/apple-icon-57x57.png')}}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{asset('bundles/app/images/favicon/apple-icon-60x60.png')}}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{asset('bundles/app/images/favicon/apple-icon-72x72.png')}}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{asset('bundles/app/images/favicon/apple-icon-76x76.png')}}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{asset('bundles/app/images/favicon/apple-icon-114x114.png')}}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{asset('bundles/app/images/favicon/apple-icon-120x120.png')}}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{asset('bundles/app/images/favicon/apple-icon-144x144.png')}}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{asset('bundles/app/images/favicon/apple-icon-152x152.png')}}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{asset('bundles/app/images/favicon/apple-icon-180x180.png')}}">
+        <link rel="icon" type="image/png" sizes="192x192"  href="{{asset('bundles/app/images/favicon/android-icon-192x192.png')}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('bundles/app/images/favicon/favicon-32x32.png')}}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{asset('bundles/app/images/favicon/favicon-96x96.png')}}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset('bundles/app/images/favicon/favicon-16x16.png')}}">
+        <link rel="manifest" href="{{asset('bundles/app/images/favicon/manifest.json')}}">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="{{asset('bundles/app/images/favicon/ms-icon-144x144.png')}}">
+        <meta name="theme-color" content="#ffffff">
+
+
+        {% block top_stylesheet %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('bundles/back/css/material-design-iconic-font.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/back/css/animate.css/animate.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/back/css/jquery.scrollbar/jquery.scrollbar.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/back/css/fullcalendar/dist/fullcalendar.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/back/css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/back/css/sweetalert2.min.css') }}">
+        {% block stylesheet %}{% endblock %}
+    </head>
+
+    <body data-sa-theme="1">
+        <main class="main">
+            <div class="page-loader">
+                <div class="page-loader__spinner">
+                    <svg viewBox="25 25 50 50">
+                        <circle cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" ></circle>
+                    </svg>
+                </div>
+            </div>
+
+            <header class="header">
+                <div class="navigation-trigger hidden-xl-up" data-sa-action="aside-open" data-sa-target=".sidebar">
+                    <i class="zmdi zmdi-menu"></i>
+                </div>
+
+                <div class="logo hidden-sm-down">
+                    <h1>
+                        <a href="{{path('back_homepage')}}">
+                            <img src="{{asset('bundles/app/images/logo/logo_soumsoum.png')}}" class="logo-ee" />
+                            <span class="text-white-logo">soumsoum</span>
+                        </a>
+                    </h1>
+                </div>
+                <!-- <form class="search" action="javascript:void(0);" method="GET">
+                    <div class="search__inner">
+                        <input type="text" class="search__text" name="query" value="" placeholder="Rechercher">
+                        <i class="zmdi zmdi-search search__helper" data-sa-action="search-close"></i>
+                    </div>
+                </form> -->
+
+
+                <ul class="top-nav">
+                    <li class="hidden-lg-down">
+                        <a href="#" class="hideNav"><i class="zmdi zmdi-flip"></i></a>
+                    </li>
+                    <li class="dropdown hidden-xs-down">
+                        <a href="#" data-toggle="dropdown"><i class="zmdi zmdi-lock-outline"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="{{path('fos_user_security_logout')}}" class="dropdown-item">Déconnexion</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="clock hidden-md-down">
+                    <div class="time">
+                        <span class="time__hours"></span>
+                        <span class="time__min"></span>
+                        <span class="time__sec"></span>
+                    </div>
+                </div>
+            </header>
+
+            <aside class="sidebar">
+                <div class="scrollbar-inner">
+                    <ul class="navigation">
+                        <li class="">
+                            <a href="{{path('artist_index')}}">
+                                <i class="zmdi zmdi-audio"></i> Artists
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="javascript:void(0);">
+                                <i class="zmdi zmdi-album"></i> Releases
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="javascript:void(0);">
+                                <i class="zmdi zmdi-collection-text"></i> News
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="javascript:void(0);">
+                                <i class="zmdi zmdi-calendar"></i> Events
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="javascript:void(0);">
+                                <i class="zmdi zmdi-local-grocery-store"></i> Store
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://byrushan.com/projects/super-admin/app/2.1.2/index.html" target="_blank">
+                                <i class="zmdi zmdi-palette"></i> Template
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <section class="content">
+                <div class="{% block content_inner %}content__inner{% endblock %}">
+                    {% block heading %}{% endblock %}
+                    {% block body %}{% endblock %}
+                </div>
+            </section>
+
+
+            {% block footer %}
+            {% endblock %}
+        </main>
+
+        <!-- Javascript -->
+        <!-- Vendors -->
+
+        <script src="{{ asset('bundles/back/js/jquery.min.js') }}" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        <script src="{{ asset('bundles/back/js/jquery.scrollbar.min.js') }}"></script>
+        <script src="{{ asset('bundles/back/js/jquery-scrollLock.min.js') }}"></script>
+        <script src="{{ asset('bundles/back/js/sweetalert2.min.js') }}"></script>
+        <script src="{{ asset('bundles/back/js/app.js') }}"></script>
+
+        {% block top_javascripts %}{% endblock %}
+
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+                init();
+            })
+            $( window ).resize(function() {
+                if ($(window).width() < 1200) {
+                    if($('.sidebar').hasClass('d-none')) {
+                        $('.sidebar').removeClass('d-none');
+                    }
+                    if($('.content').hasClass('pl-5')) {
+                        $('.content').removeClass('pl-5');
+                    }
+                }
+            })
+
+            function init() {
+                var current = location.pathname;
+                $('.sidebar .navigation li a').each(function(){
+                    var $this = $(this);
+                    if($this.attr('href').indexOf(current) !== -1){
+                        $this.closest('li').addClass('navigation__sub--active navigation__sub--toggled');
+                        // $this.closest('.navigation__sub').addClass('navigation__sub--active navigation__sub--toggled');
+                    }
+                })
+                $('.sidebar .navigation__sub .menu_level_1 li a').each(function(){
+                    var $this = $(this);
+                    if($this.attr('href').indexOf(current) !== -1){
+                        $this.closest('li').addClass('navigation__active');
+                        $this.closest('.navigation__sub').addClass('navigation__sub--active navigation__sub--toggled');
+                    }
+                })
+                $('.sidebar .navigation__sub .menu_level_2 li a').each(function(){
+                    var $this = $(this);
+                    if($this.attr('href').indexOf(current) !== -1){
+                        $this.closest('li').addClass('navigation__active');
+                        $this.closest('.navigation__sub').addClass('navigation__sub--active navigation__sub--toggled');
+                        $this.closest('.menu_level_1').closest('.navigation__sub').addClass('navigation__sub--active navigation__sub--toggled');
+                    }
+                })
+                $('.hideNav').on('click', function() {
+                    $('.sidebar').toggleClass('d-none');
+                    $('.content').toggleClass('pl-5');
+                })
+            }
+        </script>
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,216 @@
+<?php
+
+namespace BackBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Artist
+ *
+ * @ORM\Table(name="artist")
+ * @ORM\Entity(repositoryClass="BackBundle\Repository\ArtistRepository")
+ */
+class Artist
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="imagePath", type="string", length=255)
+     */
+    private $imagePath;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="youtubePath", type="string", length=255)
+     */
+    private $youtubePath;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection|Album[]
+     *
+     * @ORM\ManyToMany(targetEntity="Album", inversedBy="artists")
+     * @ORM\JoinTable(
+     *  name="artist_album",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="artist_id", referencedColumnName="id")
+     *  },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="album_id", referencedColumnName="id")
+     *  }
+     * )
+     */
+    protected $albums;
+
+    /**
+     * Default constructor, initializes collections
+     */
+    public function __construct()
+    {
+        $this->albums = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Artist
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Artist
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set imagePath
+     *
+     * @param string $imagePath
+     *
+     * @return Artist
+     */
+    public function setImagePath($imagePath)
+    {
+        $this->imagePath = $imagePath;
+
+        return $this;
+    }
+
+    /**
+     * Get imagePath
+     *
+     * @return string
+     */
+    public function getImagePath()
+    {
+        return $this->imagePath;
+    }
+
+    /**
+     * Set youtubePath
+     *
+     * @param string $youtubePath
+     *
+     * @return Artist
+     */
+    public function setYoutubePath($youtubePath)
+    {
+        $this->youtubePath = $youtubePath;
+
+        return $this;
+    }
+
+    /**
+     * Get youtubePath
+     *
+     * @return string
+     */
+    public function getYoutubePath()
+    {
+        return $this->youtubePath;
+    }
+
+    /**
+     * Add album
+     *
+     * @param \BackBundle\Entity\UserGroup $album
+     *
+     * @return Artist
+     */
+    public function addAlbum(\BackBundle\Entity\UserGroup $album)
+    {
+        $this->albums[] = $album;
+
+        return $this;
+    }
+
+    /**
+     * Remove album
+     *
+     * @param \BackBundle\Entity\UserGroup $album
+     */
+    public function removeAlbum(\BackBundle\Entity\UserGroup $album)
+    {
+        $this->albums->removeElement($album);
+    }
+
+    /**
+     * Get albums
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAlbums()
+    {
+        return $this->albums;
+    }
+}

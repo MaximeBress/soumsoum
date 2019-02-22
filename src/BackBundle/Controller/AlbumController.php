@@ -75,9 +75,9 @@ class AlbumController extends Controller
                     $tmp = $_FILES["backbundle_album"]['tmp_name']['songs']['__name__'];
                     $type = $_FILES["backbundle_album"]['type']['songs']['__name__'];
                 } else {
-                    $file = $_FILES["backbundle_album"]['name']['songs'][$key];
-                    $tmp = $_FILES["backbundle_album"]['tmp_name']['songs'][$key];
-                    $type = $_FILES["backbundle_album"]['type']['songs'][$key];
+                    $file = $_FILES["backbundle_album"]['name']['songs'][$key+1];
+                    $tmp = $_FILES["backbundle_album"]['tmp_name']['songs'][$key+1];
+                    $type = $_FILES["backbundle_album"]['type']['songs'][$key+1];
                 }
                 $allowedExts = array("audio/*", "audio/mp3", "audio/mpeg", "audio/vnd.wav");
                 $temp = explode(".", $file['file']);
@@ -91,7 +91,7 @@ class AlbumController extends Controller
                     $ff->move($this->container->get('kernel')->getRootDir().'/../web/asset/albums/'.$album->getId().'/songs/', $song->getId().'.'.$extension);
                 }
             }
-            // return $this->redirectToRoute('album_show', array('id' => $album->getId()));
+            return $this->redirectToRoute('album_show', array('id' => $album->getId()));
         }
 
         return $this->render('back/album/new.html.twig', array(

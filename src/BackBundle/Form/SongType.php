@@ -36,10 +36,6 @@ class SongType extends AbstractType
                 "mapped" => false,
                 'required'  => true,
                 'label'=> false,
-                // 'attr'=> array(
-                //     'class' => 'd-none',
-                //     'onchange' => "readURL(this)",
-                // )
             ))
         ;
     }

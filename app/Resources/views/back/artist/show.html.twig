@@ -1,44 +1,116 @@
 {% extends 'back/layout.html.twig' %}
 
 {% block body %}
-    <h1>Artist</h1>
+<div class="content__inner content__inner--sm">
+    <header class="content__title">
+        <h1>{{artist.name}}</h1>
+        <div class="actions">
+            <a href="{{path('artists_show', { 'id': artist.id })}}" target="_blank" class="actions__item zmdi zmdi-eye" data-toggle="tooltip" data-original-title="Voir en ligne"></a>
+            <a href="{{path('artist_edit', { 'id': artist.id })}}" class="actions__item zmdi zmdi-pencil" data-toggle="tooltip" data-original-title="Modifier"></a>
+            <a href="javascript:void(0)" class="actions__item zmdi zmdi-delete" data-toggle="modal" data-target="#modal-delete"></a>
+            <a href="{{path('artist_index')}}" class="actions__item zmdi zmdi-subdirectory-arrow-left" data-toggle="tooltip" data-original-title="Retour à la liste"></a>
+        </div>
+    </header>
+    <div class="modal" id="modal-delete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title pull-left">Suppression {{artist.name}}</h5>
+                </div>
+                <div class="modal-body">
+                    Êtes-vous certains de supprimer cet artiste
+                </div>
+                <div class="modal-footer">
+                    {{ form_start(delete_form) }}
+                        <input class="btn btn-link" type="submit" value="Supprimer">
+                    {{ form_end(delete_form) }}
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Annuler</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card profile">
+        <div class="profile__img">
+            <img src="{{asset(artist.getThumbnailArtist)}}" alt="">
+        </div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ artist.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ artist.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ artist.description }}</td>
-            </tr>
-            <tr>
-                <th>Imagepath</th>
-                <td>{{ artist.imagePath }}</td>
-            </tr>
-            <tr>
-                <th>Youtubepath</th>
-                <td>{{ artist.youtubePath }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="profile__info">
+            <ul class="icon-list">
+                {% if artist.facebookPath %}
+                    <li>
+                        <i class="zmdi zmdi-facebook"></i>
+                        <a href="{{artist.facebookPath}}" target="_blank">
+                            {{artist.facebookPath}}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if artist.instaPath %}
+                    <li>
+                        <i class="zmdi zmdi-instagram"></i>
+                        <a href="{{artist.instaPath}}" target="_blank">
+                            {{artist.instaPath}}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if artist.spotifyPath %}
+                    <li>
+                        <i class="zmdi zmdi-spotify"></i>
+                        <a href="{{artist.spotifyPath}}" target="_blank">
+                            {{artist.spotifyPath}}
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('artist_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('artist_edit', { 'id': artist.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="card">
+        <div class="card-body">
+            <div class="tab-container">
+                <ul class="nav nav-tabs nav-fill" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#desc" role="tab">Description</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#youtube" role="tab">Youtube</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#albums" role="tab">Albums</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active fade show" id="desc" role="tabpanel">
+                        {{artist.description|raw}}
+                    </div>
+                    <div class="tab-pane fade" id="youtube" role="tabpanel">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="{{artist.youtubePath}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="albums" role="tabpanel">
+                        <div class="listview listview--hover">
+                            {% for album in artist.albums %}
+                                <div class="listview__item">
+                                    <a href="{{ path('album_show', { 'id': album.id }) }}">
+                                        <img src="{{asset(album.getThumbnail)}}" class="listview__img" alt="">
+                                    </a>
+                                    <div class="listview__content">
+                                        <div class="listview__heading">{{album.name}}</div>
+                                        <p>{{album.description|raw}}</p>
+                                    </div>
+                                    <div class="listview__actions pr-3">
+                                        <a href="{{ path('album_show', { 'id': album.id }) }}">
+                                            <i class="actions__item zmdi zmdi-open-in-app"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

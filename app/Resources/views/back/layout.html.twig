@@ -25,9 +25,8 @@
 
         {% block top_stylesheet %}{% endblock %}
         <link rel="stylesheet" href="{{ asset('bundles/back/css/material-design-iconic-font.css') }}">
-        <link rel="stylesheet" href="{{ asset('bundles/back/css/animate.css/animate.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('bundles/back/css/jquery.scrollbar/jquery.scrollbar.css') }}">
-        <link rel="stylesheet" href="{{ asset('bundles/back/css/fullcalendar/dist/fullcalendar.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/back/css/animate.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/back/css/jquery.scrollbar.css') }}">
         <link rel="stylesheet" href="{{ asset('bundles/back/css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('bundles/back/css/sweetalert2.min.css') }}">
         {% block stylesheet %}{% endblock %}
@@ -90,17 +89,17 @@
                     <ul class="navigation">
                         <li class="">
                             <a href="{{path('artist_index')}}">
-                                <i class="zmdi zmdi-audio"></i> Artists
+                                <i class="zmdi zmdi-music-note"></i> Artists
                             </a>
                         </li>
                         <li class="">
-                            <a href="javascript:void(0);">
+                            <a href="{{path('album_index')}}">
                                 <i class="zmdi zmdi-album"></i> Releases
                             </a>
                         </li>
                         <li class="">
                             <a href="javascript:void(0);">
-                                <i class="zmdi zmdi-collection-text"></i> News
+                                <i class="zmdi zmdi-newspaper"></i> News
                             </a>
                         </li>
                         <li class="">
@@ -110,7 +109,7 @@
                         </li>
                         <li class="">
                             <a href="javascript:void(0);">
-                                <i class="zmdi zmdi-local-grocery-store"></i> Store
+                                <i class="zmdi zmdi-store"></i> Store
                             </a>
                         </li>
                         <li class="">

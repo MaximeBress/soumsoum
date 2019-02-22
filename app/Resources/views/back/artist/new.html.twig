@@ -1,16 +1,125 @@
 {% extends 'back/layout.html.twig' %}
-
+{% block top_stylesheet %}
+<link rel="stylesheet" href="{{ asset('bundles/back/css/trumbowyg.min.css') }}">
+<link rel="stylesheet" href="{{ asset('bundles/back/js/trumbowyg/colors/colors.css') }}">
+{% endblock %}
 {% block body %}
-    <h1>Artist creation</h1>
+<div class="content__inner content__inner--sm">
+    <header class="content__title">
+        <h1>Création d'un nouvel artiste</h1>
+        <div class="actions">
+            <a href="{{path('artist_index')}}" class="actions__item zmdi zmdi-close" data-toggle="tooltip" data-placement="top" data-original-title="Annuler"></a>
+        </div>
+    </header>
+    <div class="card">
+        <div class="new-contact__header">
+            <a href="javascript:void(0)" id="changeImageThumbnail" class="zmdi zmdi-camera new-contact__upload"></a>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('artist_index') }}">Back to the list</a>
-        </li>
-    </ul>
+            <img src="{{asset('bundles/back/img/icon-person.png')}}" class="new-contact__img" alt="">
+        </div>
+        <div class="card-body">
+            {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label>Nom</label>
+                            {{ form_widget(form.name) }}
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label>Description</label>
+                            {{ form_widget(form.description) }}
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="zmdi zmdi-youtube-play"></i></span>
+                            <div class="form-group">
+                                {{ form_widget(form.youtubePath) }}
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="zmdi zmdi-facebook"></i></span>
+                            <div class="form-group">
+                                {{ form_widget(form.facebookPath) }}
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="zmdi zmdi-instagram"></i></span>
+                            <div class="form-group">
+                                {{ form_widget(form.instaPath) }}
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="zmdi zmdi-audio"></i></span>
+                            <div class="form-group">
+                                {{ form_widget(form.spotifyPath) }}
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+                <div class="mt-5 text-center">
+                    <input class="btn btn-light" type="submit" value="Enregistrer" />
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('bundles/back/js/trumbowyg/trumbowyg.min.js') }}"></script>
+<script src="{{ asset('bundles/back/js/trumbowyg/colors/trumbowyg.colors.js') }}"></script>
+<script src="{{ asset('bundles/back/js/trumbowyg/fr.min.js') }}"></script>
+<script>
+$(document).ready(function() {
+    $('#changeImageThumbnail').on('click',function() {
+        $('#backbundle_artist_image').trigger('click');
+    });
+    $("#backbundle_artist_description").trumbowyg({
+        svgPath: "{{asset('bundles/back/js/trumbowyg/icons.svg')}}",
+        lang: "fr",
+        btns: [
+            ['undo', 'redo'],
+            ['foreColor', 'backColor'],
+            ['formatting'],
+            ['strong', 'em', 'del'],
+            ['link'],
+            ['insertImage'],
+            ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+            ['unorderedList', 'orderedList'],
+            ['removeformat'],
+        ]
+    })
+})
+function readURL(input) {
+    var url = input.value;
+    var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+    if (input.files && input.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('.new-contact__img').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        alert('Format non valide')
+    }
+}
+</script>
 {% endblock %}

@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use BackBundle\Entity\Artist;
 
 /**
  * @Route("/artists")
@@ -20,12 +21,12 @@ class ArtistController extends Controller
         ));
     }
     /**
-     * @Route("/{id}", name="artist_show")
+     * @Route("/{id}", name="artists_show")
      */
-    public function showAction($id)
+    public function showAction(Artist $artist)
     {
         return $this->render('front/artists/show.html.twig', array(
-            // ...
+            'artist' => $artist
         ));
     }
 }

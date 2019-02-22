@@ -1,0 +1,58 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block body %}
+<header class="content__title">
+    <h1>Liste des albums</h1>
+
+    <div class="actions">
+        <a href="{{ path('album_new') }}" class="actions__item zmdi zmdi-plus" data-toggle="tooltip" data-title="Ajouter un album"></a>
+    </div>
+</header>
+
+<div class="toolbar">
+    <div class="actions">
+        <i class="actions__item zmdi zmdi-magnify" data-sa-action="toolbar-search-open"></i>
+    </div>
+
+    <div class="toolbar__search" style="display: none;">
+        <input type="text" placeholder="Rechercher ..." oninput='search(this.value)'>
+        <i class="toolbar__search__close zmdi zmdi-long-arrow-left" data-sa-action="toolbar-search-close"></i>
+    </div>
+</div>
+<div id="albums" class="contacts row">
+    {% for album in albums %}
+        <div class="col-xl-2 col-lg-3 col-sm-4 col-6 elmts">
+            <div class="contacts__item">
+                <a href="{{ path('album_show', { 'id': album.id }) }}" class="contacts__img">
+                    <img src="{{asset(album.getThumbnail)}}" alt="">
+                </a>
+
+                <div class="contacts__info mb-3">
+                    <strong class="name">{{ album.name|upper }}</strong>
+                    <small></small>
+                </div>
+
+                <a href="{{ path('album_show', { 'id': album.id }) }}" class="contacts__btn">Voir</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+function search(val) {
+    var filter = val.toUpperCase();
+    var list = document.getElementById("albums");
+    var element = list.getElementsByClassName('elmts');
+    for (i = 0; i < element.length; i++) {
+        a = element[i].getElementsByClassName("name")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            element[i].style.display = "";
+        } else {
+            element[i].style.display = "none";
+        }
+    }
+}
+</script>
+{% endblock %}

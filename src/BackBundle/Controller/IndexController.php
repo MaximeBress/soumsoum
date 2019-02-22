@@ -12,7 +12,7 @@ class IndexController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('BackBundle:Index:index.html.twig', array(
+        return $this->render('back/index.html.twig', array(
             // ...
         ));
     }

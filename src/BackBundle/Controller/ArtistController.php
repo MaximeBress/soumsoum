@@ -5,7 +5,9 @@ namespace BackBundle\Controller;
 use BackBundle\Entity\Artist;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Artist controller.
@@ -39,15 +41,24 @@ class ArtistController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $artist = new Artist();
         $form = $this->createForm('BackBundle\Form\ArtistType', $artist);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $em->persist($artist);
+            $str = str_replace("https://youtu.be","https://www.youtube.com/embed",$artist->getYoutubePath());
+            $artist->setYoutubePath($str);
             $em->persist($artist);
             $em->flush();
-
+            $allowedExts = array("image/gif", "image/jpeg", "image/jpg", "image/pjpeg", "image/x-png", "image/png");
+            $temp = explode(".", $_FILES["backbundle_artist"]['name']['image']);
+            $extension = end($temp);
+            if(in_array($_FILES["backbundle_artist"]['type']['image'], $allowedExts)){
+                $ff = new UploadedFile($_FILES["backbundle_artist"]['tmp_name']['image'],$_FILES["backbundle_artist"]['name']['image']);
+                $ff->move($this->container->get( 'kernel' )->getRootDir() . '/../web/asset/artists/thumbnail/', $artist->getId().'.'.$extension);
+            }
             return $this->redirectToRoute('artist_show', array('id' => $artist->getId()));
         }
 
@@ -81,14 +92,26 @@ class ArtistController extends Controller
      */
     public function editAction(Request $request, Artist $artist)
     {
+        $em = $this->getDoctrine()->getManager();
         $deleteForm = $this->createDeleteForm($artist);
         $editForm = $this->createForm('BackBundle\Form\ArtistType', $artist);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em->persist($artist);
+            $str = str_replace("https://youtu.be","https://www.youtube.com/embed",$artist->getYoutubePath());
+            $artist->setYoutubePath($str);
+            $em->persist($artist);
+            $em->flush();
+            $allowedExts = array("image/gif", "image/jpeg", "image/jpg", "image/pjpeg", "image/x-png", "image/png");
+            $temp = explode(".", $_FILES["backbundle_artist"]['name']['image']);
+            $extension = end($temp);
+            if(in_array($_FILES["backbundle_artist"]['type']['image'], $allowedExts)){
+                $ff = new UploadedFile($_FILES["backbundle_artist"]['tmp_name']['image'],$_FILES["backbundle_artist"]['name']['image']);
+                $ff->move($this->container->get( 'kernel' )->getRootDir() . '/../web/asset/artists/thumbnail/', $artist->getId().'.'.$extension);
+            }
 
-            return $this->redirectToRoute('artist_edit', array('id' => $artist->getId()));
+            return $this->redirectToRoute('artist_show', array('id' => $artist->getId()));
         }
 
         return $this->render('back/artist/edit.html.twig', array(
@@ -101,7 +124,7 @@ class ArtistController extends Controller
     /**
      * Deletes a artist entity.
      *
-     * @Route("/{id}", name="artist_delete")
+     * @Route("/{id}/delete", name="artist_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Artist $artist)
@@ -111,6 +134,9 @@ class ArtistController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            foreach ($artist->getAlbums() as $key => $album) {
+                $artist->removeAlbum($album);
+            }
             $em->remove($artist);
             $em->flush();
         }

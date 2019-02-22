@@ -1,45 +1,57 @@
 {% extends 'back/layout.html.twig' %}
 
 {% block body %}
-    <h1>Artists list</h1>
+<header class="content__title">
+    <h1>Liste des artistes</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Imagepath</th>
-                <th>Youtubepath</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for artist in artists %}
-            <tr>
-                <td><a href="{{ path('artist_show', { 'id': artist.id }) }}">{{ artist.id }}</a></td>
-                <td>{{ artist.name }}</td>
-                <td>{{ artist.description }}</td>
-                <td>{{ artist.imagePath }}</td>
-                <td>{{ artist.youtubePath }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('artist_show', { 'id': artist.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('artist_edit', { 'id': artist.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="actions">
+        <a href="{{ path('artist_new') }}" class="actions__item zmdi zmdi-plus" data-toggle="tooltip" data-title="Ajouter un artiste"></a>
+    </div>
+</header>
 
-    <ul>
-        <li>
-            <a href="{{ path('artist_new') }}">Create a new artist</a>
-        </li>
-    </ul>
+<div class="toolbar">
+    <div class="actions">
+        <i class="actions__item zmdi zmdi-magnify" data-sa-action="toolbar-search-open"></i>
+    </div>
+
+    <div class="toolbar__search" style="display: none;">
+        <input type="text" placeholder="Rechercher ..." oninput='search(this.value)'>
+        <i class="toolbar__search__close zmdi zmdi-long-arrow-left" data-sa-action="toolbar-search-close"></i>
+    </div>
+</div>
+<div id="artists" class="contacts row">
+    {% for artist in artists %}
+        <div class="col-xl-2 col-lg-3 col-sm-4 col-6 elmts">
+            <div class="contacts__item">
+                <a href="{{ path('artist_show', { 'id': artist.id }) }}" class="contacts__img">
+                    <img src="{{asset(artist.getThumbnailArtist)}}" alt="">
+                </a>
+
+                <div class="contacts__info mb-3">
+                    <strong class="name">{{ artist.name|upper }}</strong>
+                </div>
+
+                <a href="{{ path('artist_show', { 'id': artist.id }) }}" class="contacts__btn">Voir</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+function search(val) {
+    var filter = val.toUpperCase();
+    var list = document.getElementById("artists");
+    var element = list.getElementsByClassName('elmts');
+    for (i = 0; i < element.length; i++) {
+        a = element[i].getElementsByClassName("name")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            element[i].style.display = "";
+        } else {
+            element[i].style.display = "none";
+        }
+    }
+}
+</script>
 {% endblock %}

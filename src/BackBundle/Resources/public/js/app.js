@@ -130,9 +130,7 @@ $(window).on("load", function() {
         });
     if ($(".color-picker")[0] && ($(".color-picker__value").colorpicker(), $("body").on("change", ".color-picker__value", function() {
             $(this).closest(".color-picker").find(".color-picker__preview").css("backgroundColor", $(this).val())
-        })), $(".wysiwyg-editor")[0] && $(".wysiwyg-editor").trumbowyg({
-            autogrow: !0
-        }), $('[data-toggle="popover"]')[0] && $('[data-toggle="popover"]').popover(), $('[data-toggle="tooltip"]')[0] && $('[data-toggle="tooltip"]').tooltip(), $(".widget-calendar__body")[0]) {
+        })), $('[data-toggle="popover"]')[0] && $('[data-toggle="popover"]').popover(), $('[data-toggle="tooltip"]')[0] && $('[data-toggle="tooltip"]').tooltip(), $(".widget-calendar__body")[0]) {
         $(".widget-calendar__body").fullCalendar({
             contentHeight: "auto",
             theme: !1,

@@ -1,9 +1,16 @@
 {% extends "base.html.twig" %}
-{% block title %}Eye to eye{% endblock %}
+{% block title %}{{artist.name}}{% endblock %}
+{% block metadatas %}
+    <meta property="og:url"           content="{{app.request.uri}}" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="{{artist.name}}" />
+    <meta property="og:description"   content="{{artist.name}}" />
+    <meta property="og:image"         content="{{asset(artist.getThumbnailArtist)}}" />
+{% endblock %}
 {% block body %}
     <section id="page-title">
-        <div class="global-title wow zoomIn" style="visibility: visible; animation-name: zoomIn;">
-            <h1>Eye to eye</h1>
+        <div class="global-title wow zoomIn">
+            <h1>{{artist.name}}</h1>
         </div>
     </section>
     <section id="discography-text">
@@ -11,34 +18,33 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="artist-image">
-                        <img class="" src="{{asset('bundles/app/images/dane-deaner-305151-unsplash.jpg')}}" alt="First slide">
+                        <img class="" src="{{asset(artist.getThumbnailArtist)}}" alt="{{artist.name}}">
                     </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="discography_description">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcos laboris nisis ut aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse cillum dolore egiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id it laborum. Sed ut perspiciatis unde omnis iste natus error sit
-                            voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore ut labore et dolore now is the great working with travlling magnam aliquam quaerat voluptatem.
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcos laboris nisis ut aliquip ex ea commodo consequat.
-                        </p>
+                        {{artist.description|raw}}
                     </div>
                     <div class="social-icons">
-                        <span>SHARE :</span>
-                        <a href="javascript:void(0);">
-                            <i class="fa fa-dribbble" aria-hidden="true"></i>
-                        </a>
-                        <a href="javascript:void(0);">
+                        <span>SUIVRE :</span>
+                        <a href="{{artist.facebookPath}}" target="_blank">
                             <i class="fa fa-facebook" aria-hidden="true"></i>
                         </a>
-                        <a href="javascript:void(0);">
+                        <a href="{{artist.instaPath}}" target="_blank">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="{{artist.spotifyPath}}" target="_blank">
+                            <i class="fa fa-spotify" aria-hidden="true"></i>
+                        </a>
+                        <!-- <a href="javascript:void(0);" onclick="share_fb('{{app.request.uri}}');return false;" rel="nofollow" share_url="{{app.request.uri}}" target="_blank">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" onclick="share_tweet('{{artist.name}}')" rel="nofollow" target="_blank">
                             <i class="fa fa-twitter" aria-hidden="true"></i>
-                        </a>
-                        <a href="javascript:void(0);">
+                        </a> -->
+                        <!-- <a href="javascript:void(0);">
                             <i class="fa fa-pinterest" aria-hidden="true"></i>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </div>
@@ -53,12 +59,12 @@
             <div class="title">
                 <div class="">
                     <h1>Video</h1>
-                    <p>Lorem ipsum dolor</p>
                 </div>
             </div>
             <div class="video">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <div class="youtube" id="aJOTlE1K90k" data-src="{{asset('bundles/app/images/edwin-andrade-158050-unsplash.jpg')}}"></div>
+                    <iframe class="embed-responsive-item" src="{{artist.youtubePath}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <!-- <div class="youtube" id="aJOTlE1K90k" data-src="{{asset('bundles/app/images/edwin-andrade-158050-unsplash.jpg')}}"></div> -->
                 </div>
             </div>
         </div>
@@ -386,5 +392,14 @@
     </section>
 {% endblock %}
 {% block javascripts %}
-    <script></script>
+<script>
+    function share_fb(url) {
+        window.open('https://www.facebook.com/sharer/sharer.php?u='+url,'facebook-share-dialog',"width=626, height=436")
+    }
+    function share_tweet(name) {
+        var text = "Venez suivre "+name +" sur ";
+        var shareUrl = 'https://twitter.com/intent/tweet?url=' + location.href + '&text=' + text;
+        window.open(shareUrl,'ShareOnTwitter',"width=626, height=436")
+    }
+</script>
 {% endblock %}

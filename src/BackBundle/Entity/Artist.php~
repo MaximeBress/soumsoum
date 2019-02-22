@@ -51,9 +51,30 @@ class Artist
     private $youtubePath;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="facebookPath", type="string", length=255)
+     */
+    private $facebookPath;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instaPath", type="string", length=255)
+     */
+    private $instaPath;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="spotifyPath", type="string", length=255)
+     */
+    private $spotifyPath;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection|Album[]
      *
-     * @ORM\ManyToMany(targetEntity="UserGroup", inversedBy="artists")
+     * @ORM\ManyToMany(targetEntity="Album", inversedBy="artists")
      * @ORM\JoinTable(
      *  name="artist_album",
      *  joinColumns={
@@ -178,5 +199,39 @@ class Artist
     public function getYoutubePath()
     {
         return $this->youtubePath;
+    }
+
+    /**
+     * Add album
+     *
+     * @param \BackBundle\Entity\UserGroup $album
+     *
+     * @return Artist
+     */
+    public function addAlbum(\BackBundle\Entity\UserGroup $album)
+    {
+        $this->albums[] = $album;
+
+        return $this;
+    }
+
+    /**
+     * Remove album
+     *
+     * @param \BackBundle\Entity\UserGroup $album
+     */
+    public function removeAlbum(\BackBundle\Entity\UserGroup $album)
+    {
+        $this->albums->removeElement($album);
+    }
+
+    /**
+     * Get albums
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAlbums()
+    {
+        return $this->albums;
     }
 }

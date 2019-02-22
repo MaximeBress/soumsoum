@@ -39,16 +39,30 @@ class Artist
     /**
      * @var string
      *
-     * @ORM\Column(name="imagePath", type="string", length=255)
+     * @ORM\Column(name="youtubePath", type="string", length=255, nullable=true)
      */
-    private $imagePath;
+    private $youtubePath;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="youtubePath", type="string", length=255)
+     * @ORM\Column(name="facebookPath", type="string", length=255, nullable=true)
      */
-    private $youtubePath;
+    private $facebookPath;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instaPath", type="string", length=255, nullable=true)
+     */
+    private $instaPath;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="spotifyPath", type="string", length=255, nullable=true)
+     */
+    private $spotifyPath;
 
     /**
      * @var \Doctrine\Common\Collections\Collection|Album[]
@@ -133,30 +147,6 @@ class Artist
     }
 
     /**
-     * Set imagePath
-     *
-     * @param string $imagePath
-     *
-     * @return Artist
-     */
-    public function setImagePath($imagePath)
-    {
-        $this->imagePath = $imagePath;
-
-        return $this;
-    }
-
-    /**
-     * Get imagePath
-     *
-     * @return string
-     */
-    public function getImagePath()
-    {
-        return $this->imagePath;
-    }
-
-    /**
      * Set youtubePath
      *
      * @param string $youtubePath
@@ -183,11 +173,11 @@ class Artist
     /**
      * Add album
      *
-     * @param \BackBundle\Entity\UserGroup $album
+     * @param \BackBundle\Entity\Album $album
      *
      * @return Artist
      */
-    public function addAlbum(\BackBundle\Entity\UserGroup $album)
+    public function addAlbum(\BackBundle\Entity\Album $album)
     {
         $this->albums[] = $album;
 
@@ -197,9 +187,9 @@ class Artist
     /**
      * Remove album
      *
-     * @param \BackBundle\Entity\UserGroup $album
+     * @param \BackBundle\Entity\Album $album
      */
-    public function removeAlbum(\BackBundle\Entity\UserGroup $album)
+    public function removeAlbum(\BackBundle\Entity\Album $album)
     {
         $this->albums->removeElement($album);
     }
@@ -212,5 +202,94 @@ class Artist
     public function getAlbums()
     {
         return $this->albums;
+    }
+
+    /**
+     * Set facebookPath
+     *
+     * @param string $facebookPath
+     *
+     * @return Artist
+     */
+    public function setFacebookPath($facebookPath)
+    {
+        $this->facebookPath = $facebookPath;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookPath
+     *
+     * @return string
+     */
+    public function getFacebookPath()
+    {
+        return $this->facebookPath;
+    }
+
+    /**
+     * Set instaPath
+     *
+     * @param string $instaPath
+     *
+     * @return Artist
+     */
+    public function setInstaPath($instaPath)
+    {
+        $this->instaPath = $instaPath;
+
+        return $this;
+    }
+
+    /**
+     * Get instaPath
+     *
+     * @return string
+     */
+    public function getInstaPath()
+    {
+        return $this->instaPath;
+    }
+
+    /**
+     * Set spotifyPath
+     *
+     * @param string $spotifyPath
+     *
+     * @return Artist
+     */
+    public function setSpotifyPath($spotifyPath)
+    {
+        $this->spotifyPath = $spotifyPath;
+
+        return $this;
+    }
+
+    /**
+     * Get spotifyPath
+     *
+     * @return string
+     */
+    public function getSpotifyPath()
+    {
+        return $this->spotifyPath;
+    }
+
+    public function getWebPath()
+    {
+        return 'asset/artists/thumbnail/';
+    }
+    public function getThumbnailArtist()
+    {
+        $extensions = array('png','jpg','jpeg');
+        foreach($extensions AS $ext){
+            $thumb = $this->getWebPath().$this->id.'.'.$ext;
+            if(is_file($thumb)){
+                return $thumb;
+            }
+        }
+        $thumb = 'bundles/back/img/icon-person.png';
+        return $thumb;
     }
 }

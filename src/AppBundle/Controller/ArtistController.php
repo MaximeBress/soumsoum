@@ -16,8 +16,12 @@ class ArtistController extends Controller
      */
     public function listAction()
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $artists = $em->getRepository('BackBundle:Artist')->findAll();
+
         return $this->render('front/artists/list.html.twig', array(
-            // ...
+            'artists' => $artists
         ));
     }
     /**

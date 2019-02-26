@@ -69,6 +69,7 @@
             </div>
         </div>
     </section>
+    {% if artist.albums|length %}
     <section id="discography">
         <div class="title">
             <div class="">
@@ -77,83 +78,25 @@
             </div>
         </div>
         <div class="row">
-            <div class="w-100 col-sm-6 col-md-3 col-lg-2 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                <div class="w-100 discography_banner">
-                    <div class="music-banner-image" style="height: 594.328px;">
-                        <img src="{{asset('bundles/app/images/jon-tyson-498978-unsplash.jpg')}}" alt="">
+            {% for album in artist.albums %}
+                <div class="w-100 col-sm-6 col-md-3 wow fadeInUp">
+                    <div class="w-100 discography_banner">
+                        <div class="music-banner-image">
+                            <img src="{{asset(album.getThumbnail)}}" alt="">
+                        </div>
+                        <div class="music-banner-text">
+                            <h2>{{album.name}}</h2>
+                            <!-- <p>Hip hop</p> -->
+                        </div>
+                        <a href="{{path('release_show', {'id': album.id})}}" class="music-banner-link"></a>
                     </div>
-                    <div class="music-banner-text">
-                        <h2>Person</h2>
-                        <p>Hip hop</p>
-                    </div>
-                    <a href="03-Music-Single-Album.html" class="music-banner-link"></a>
                 </div>
-            </div>
-            <div class="w-100 col-sm-6 col-md-3 col-lg-2 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                <div class="w-100 discography_banner">
-                    <div class="music-banner-image" style="height: 594.328px;">
-                        <img src="{{asset('bundles/app/images/jon-tyson-498978-unsplash.jpg')}}" alt="">
-                    </div>
-                    <div class="music-banner-text">
-                        <h2>Imagine</h2>
-                        <p>Rock Music</p>
-                    </div>
-                    <a href="03-Music-Single-Album.html" class="music-banner-link"></a>
-                </div>
-            </div>
-            <div class="w-100 col-sm-6 col-md-3 col-lg-2 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                <div class="w-100 discography_banner">
-                    <div class="music-banner-image" style="height: 594.328px;">
-                        <img src="{{asset('bundles/app/images/jon-tyson-498978-unsplash.jpg')}}" alt="">
-                    </div>
-                    <div class="music-banner-text">
-                        <h2>Camel</h2>
-                        <p>Rock and Roll</p>
-                    </div>
-                    <a href="03-Music-Single-Album.html" class="music-banner-link"></a>
-                </div>
-            </div>
-            <div class="w-100 col-sm-6 col-md-3 col-lg-2 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                <div class="w-100 discography_banner">
-                    <div class="music-banner-image" style="height: 594.328px;">
-                        <img src="{{asset('bundles/app/images/jon-tyson-498978-unsplash.jpg')}}" alt="">
-                    </div>
-                    <div class="music-banner-text">
-                        <h2>Men</h2>
-                        <p>Rock Music</p>
-                    </div>
-                    <a href="03-Music-Single-Album.html" class="music-banner-link"></a>
-                </div>
-            </div>
-            <div class="w-100 col-sm-6 col-md-3 col-lg-2 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                <div class="w-100 discography_banner">
-                    <div class="music-banner-image" style="height: 594.328px;">
-                        <img src="{{asset('bundles/app/images/jon-tyson-498978-unsplash.jpg')}}" alt="">
-                    </div>
-                    <div class="music-banner-text">
-                        <h2>covering Eyes</h2>
-                        <p>Jazz Music</p>
-                    </div>
-                    <a href="03-Music-Single-Album.html" class="music-banner-link"></a>
-                </div>
-            </div>
-            <div class="w-100 col-sm-6 col-md-3 col-lg-2 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                <div class="w-100 discography_banner">
-                    <div class="music-banner-image" style="height: 594.328px;">
-                        <img src="{{asset('bundles/app/images/jon-tyson-498978-unsplash.jpg')}}" alt="">
-                    </div>
-                    <div class="music-banner-text">
-                        <h2>Hands</h2>
-                        <p>Hip hop</p>
-                    </div>
-                    <a href="03-Music-Single-Album.html" class="music-banner-link"></a>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </section>
 
-
-
+    {% endif %}
+<!--
     <section id="discography-post">
         <div class="discography_banner_background_image">
             <div class="overly"></div>
@@ -389,7 +332,8 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+
 {% endblock %}
 {% block javascripts %}
 <script>

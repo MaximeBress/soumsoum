@@ -1,9 +1,16 @@
 {% extends "base.html.twig" %}
 {% block classpage %}music-discography{% endblock %}
-{% block title %}News{% endblock %}
+{% block title %}{{ news.title }}{% endblock %}
+{% block metadatas %}
+    <meta property="og:url"           content="{{app.request.uri}}" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="{{news.title}}" />
+    <meta property="og:description"   content="{{news.title}}" />
+    <meta property="og:image"         content="{{asset(news.getThumbnail)}}" />
+{% endblock %}
 {% block body %}
 <section id="page-title">
-    <div class="global-title wow zoomIn" style="visibility: visible; animation-name: zoomIn;">
+    <div class="global-title wow zoomIn">
         <h1>News</h1>
     </div>
 </section>
@@ -12,113 +19,51 @@
         <div class="row blog-content">
             <div class="col-sm-9 post-content">
                 <div class="featured-image">
-                    <img src="{{asset('bundles/app/images/hanny-naibaho-388579-unsplash.jpg')}}" alt="">
+                    <img src="{{asset(news.getThumbnail)}}" alt="">
                 </div>
                 <div class="post-text">
                     <div class="post-heading">
-                        <h2>DRUM FESTIVAL</h2>
+                        <h2>{{ news.title }}</h2>
                         <div class="post-by">
-                            <span>April 16, 2018 </span>
-                            <span>By <a href="#" class="categories-name">Admin </a></span>
-                            <span class="post-category">In <a href="#" class="categories-name">Travelling</a></span>
+                            <span>{{ news.createdAt|date('d/m/Y') }}</span>
+                            <span>Par <a href="#" class="categories-name">{{news.author.completename}} </a></span>
+                            <span class="post-category">dans <a href="#" class="categories-name">{{news.newsType.title}}</a></span>
                         </div>
                     </div>
-                    <p>
-                        This is Photoshop's version now we’s of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi eiilit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate
-                        cursus a sit amet mauris. Morbi accumsans ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti have a great is the best sociosqu ad litora torquent per conubia
-                        nostra.
-                    </p>
-                    <p class="post-quote">
-                        Exercitation photo booths stumptowns totes bag Banksy, elit small batch bit kale chips proident chillwave have a great work deep haves laborum. Exercitation photo booths stumptowns totes bag Banksy, elit small batch bit kale chips proident chillwave
-                        have a great work.
-                    </p>
-                    <p>
-                        Proins gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagitgitis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam
-                        nec terzllus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti Duis aute irure dolor in reprehenderit in voluptate velit. Qui officia deserunt mollit anim id est labosasirum. Corrupti
-                        quosalores et quas molestias excepturi sint occaecati. Facere possimus, omnis voluptas assumenda have esOmnis dolor repellendus. Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis.Et harum quidem the odio dignissimos ducimus qui
-                        blanditiis praesentium voluptatum deleniti atque.sociosqu ad litora torquent per conubia nostra.
-                    </p>
+                    <div>
+                        {{news.description|raw}}
+                    </div>
                 </div>
                 <div class="post-share">
                     <span>SHARE :</span>
-                    <a href="javascript:void(0);"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
-                    <a href="javascript:void(0);"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a href="javascript:void(0);"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                    <a href="javascript:void(0);"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                    <a href="javascript:void(0);" onclick="share_fb('{{app.request.uri}}');return false;" rel="nofollow" share_url="{{app.request.uri}}" target="_blank">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="javascript:void(0);" onclick="share_tweet('{{news.title}}')" rel="nofollow" target="_blank">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-pinterest" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
-            <div class="col-sm-3 sitebar">
-                <div class="blog-search">
-                    <form class="form-inline md-form mr-auto mb-4">
-                        <input class="mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
-                        <button class="search-btn" type="submit">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </button>
-                    </form>
-                </div>
-                <div class="blog-categories">
-                    <h2>CATEGORIES</h2>
-                    <div class="p-categories">
-                        <a href="javascript:void(0);" class="categories-line">
-                            <span class="c-name">Singles</span>
-                            <span class="c-count">98</span>
-                        </a>
-                        <a href="javascript:void(0);" class="categories-line">
-                            <span class="c-name">Audio</span>
-                            <span class="c-count">102</span>
-                        </a>
-                        <a href="javascript:void(0);" class="categories-line">
-                            <span class="c-name">Gallery</span>
-                            <span class="c-count">83</span>
-                        </a>
-                        <a href="javascript:void(0);" class="categories-line">
-                            <span class="c-name">Image</span>
-                            <span class="c-count">04</span>
-                        </a>
-                        <a href="javascript:void(0);" class="categories-line">
-                            <span class="c-name">Discussion</span>
-                            <span class="c-count">109</span>
-                        </a>
-                        <a href="javascript:void(0);" class="categories-line">
-                            <span class="c-name">Design</span>
-                            <span class="c-count">50</span>
-                        </a>
-                        <a href="javascript:void(0);" class="categories-line">
-                            <span class="c-name">Video</span>
-                            <span class="c-count">102</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="blog-recent-post">
+            <div class="col-sm-3 sitebar pt-0">
+                <div class="blog-recent-post mt-0">
                     <h2>RECENT POSTS</h2>
                     <div class="p-recent-posts">
-                        <a href="{{path('news_show', {'id':1})}}" class="resent-posts-line">
-                            <div class="recent-post-image">
-                                <img src="{{asset('bundles/app/images/malte-wingen-381988-unsplash.jpg')}}" alt="Toa Heftiba">
-                            </div>
-                            <div class="recent-post-name">
-                                <h3>jurney towards a lifestyle</h3>
-                                <span>Jun. 16 2019</span>
-                            </div>
-                        </a>
-                        <a href="{{path('news_show', {'id':1})}}" class="resent-posts-line">
-                            <div class="recent-post-image">
-                                <img src="{{asset('bundles/app/images/jack-hamilton-135654-unsplash.jpg')}}" alt="Photo">
-                            </div>
-                            <div class="recent-post-name">
-                                <h3>Fashionable shoes</h3>
-                                <span>Jun. 18 2019</span>
-                            </div>
-                        </a>
-                        <a href="{{path('news_show', {'id':1})}}" class="resent-posts-line">
-                            <div class="recent-post-image">
-                                <img src="{{asset('bundles/app/images/hanny-naibaho-388579-unsplash.jpg')}}" alt="Photo 1">
-                            </div>
-                            <div class="recent-post-name">
-                                <h3>really awesome’s Adventure</h3>
-                                <span>Jun. 23 2019</span>
-                            </div>
-                        </a>
+                        {% for post in recent if post.id != news.id %}
+                            <a href="{{path('news_show', {'id':post.id})}}" class="resent-posts-line">
+                                {% if post.getThumbnail %}
+                                    <div class="recent-post-image">
+                                        <img src="{{asset(post.getThumbnail)}}" alt="">
+                                    </div>
+                                {% endif %}
+                                <div class="recent-post-name">
+                                    <h3>{{post.title}}</h3>
+                                    <span>{{ post.createdAt|date('d/m/Y') }}</span>
+                                </div>
+                            </a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -127,5 +72,14 @@
 </section>
 {% endblock %}
 {% block javascripts %}
-    <script></script>
+<script>
+    function share_fb(url) {
+        window.open('https://www.facebook.com/sharer/sharer.php?u='+url,'facebook-share-dialog',"width=626, height=436")
+    }
+    function share_tweet(name) {
+        var text = "Venez suivre "+name +" sur ";
+        var shareUrl = 'https://twitter.com/intent/tweet?url=' + location.href + '&text=' + text;
+        window.open(shareUrl,'ShareOnTwitter',"width=626, height=436")
+    }
+</script>
 {% endblock %}

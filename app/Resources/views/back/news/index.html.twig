@@ -1,0 +1,159 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block body %}
+    <header class="content__title">
+        <h1>Liste des news</h1>
+
+        <div class="actions">
+            <a href="{{ path('news_new') }}" class="actions__item zmdi zmdi-plus" data-toggle="tooltip" data-title="Ajouter une news"></a>
+        </div>
+    </header>
+
+    <div class="toolbar">
+        <div class="actions">
+            <i class="actions__item zmdi zmdi-magnify" data-sa-action="toolbar-search-open"></i>
+        </div>
+
+        <div class="toolbar__search" style="display: none;">
+            <input type="text" placeholder="Rechercher ..." oninput='search(this.value)'>
+            <i class="toolbar__search__close zmdi zmdi-long-arrow-left" data-sa-action="toolbar-search-close"></i>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-md-7 grid">
+            {% if pagination|length %}
+                {% for news in pagination %}
+                    <div class="card {{news.newsType.title|lower}}">
+                        {% if news.getThumbnail %}
+                            <img class="card-img-top" src="{{asset(news.getThumbnail)}}" alt="">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h4 class="card-title">{{news.title}}</h4>
+                            <h6 class="card-subtitle">par {{news.author.completename}} {% if news.createdAt %} le {{ news.createdAt|date('d/m/Y') }}{% endif %}</h6>
+                            <div>
+                                {{news.description|slice(0,200)|raw}} ...
+                            </div>
+                            <a href="{{ path('news_back_show', { 'id': news.id }) }}" class="btn btn-light">Voir</a>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            {% else %}
+                <h2 class="text-center mt-5">Aucune news pour le moment</h2>
+            {% endif %}
+        </div>
+
+        <div class="col-lg-4 col-md-5 hidden-sm-down">
+            <div class="card tags">
+                <div class="card-body">
+                    <h4 class="card-title">Catégories</h4>
+                    <div class="actions">
+                        <a href="javascript:void(0)" class="actions__item zmdi zmdi-plus" data-toggle="modal" data-target="#modalCategory"></a>
+                    </div>
+                    <div class="tags__body">
+                        <a href="javascript:void(0);" class="active" data-filter="*">Voir tout</a>
+                        {% for category in categories %}
+                            <a href="javascript:void(0);" ondblclick="openModal('{{category.id}}')" data-filter=".{{category.title|lower}}">#{{category.title}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade show" id="modalCategory">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title pull-left">Ajouter une catégorie</h5>
+                </div>
+                {{ form_start(form) }}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            {{ form_widget(form.title) }}
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn btn-link" type="submit" value="Enregistrer" />
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Annuler</button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    {% for category in categories %}
+        <div class="modal fade show" id="modalCategory{{category.id}}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title pull-left">Modifier une catégorie</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" class="form-control title" value="{{category.title}}">
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link modify" data-id="{{category.id}}">Modifier</button>
+                        {% if category.news|length == 0 %}
+                            <a href="{{path('category_delete', {'id':category.id})}}" class="btn btn-link delete" onclick="return confirm('Êtes-vous certains de vouloir supprimer cette catégorie ?')">Supprimer</a>
+                        {% endif %}
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+{% block javascripts %}
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<script>
+jQuery(document).ready(function() {
+    $('.grid').isotope({
+        itemSelector: '.card',
+        layoutMode: 'fitRows'
+    });
+    var $grid = $('.grid').isotope({
+        itemSelector: '.card',
+        layoutMode: 'fitRows'
+    });
+    $('.tags__body').on( 'click', 'a', function() {
+        var filterValue = $( this ).attr('data-filter');
+        $grid.isotope({ filter: filterValue });
+    });
+    $('.tags__body').each( function( i, buttonGroup ) {
+        var $buttonGroup = $( buttonGroup );
+        $buttonGroup.on( 'click', 'a', function() {
+            $buttonGroup.find('.active').removeClass('active');
+            $( this ).addClass('active');
+        });
+    });
+    $('.modify').on('click', function() {
+        var title = $(this).closest('.modal-content').find('.title')[0].value;
+        var id = $(this).data('id');
+        modifyCategory(id,title)
+    })
+})
+function openModal(elmt) {
+    $('#modalCategory'+elmt).modal('show')
+}
+
+function modifyCategory(id,title) {
+    $.ajax({
+        type: "POST",
+        url: "{{path('category_edit')}}",
+        data: {id:id,title:title},
+        success: function(datas){
+            if(datas.success) {
+                location.reload();
+            }
+        }
+    });
+}
+
+</script>
+{% endblock %}

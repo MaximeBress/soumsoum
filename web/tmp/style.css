@@ -1361,12 +1361,12 @@ a.anim_border::after {
 }
 
 .news>div.row {
-    margin: 0;
+    /* margin: 0;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
     -moz-box-pack: justify;
     -ms-flex-pack: justify;
-    justify-content: space-between
+    justify-content: space-between */
 }
 
 .home .news>div>div {
@@ -1376,10 +1376,10 @@ a.anim_border::after {
     padding: 20px;
 }
 .news>div>div {
-    position: relative;
+    /* position: relative;
     max-width: 575px;
     width: 95%;
-    padding: 20px 10px
+    padding: 20px 10px */
 }
 
 .news_content {
@@ -3500,7 +3500,7 @@ body.gallery-single-gallery #discography-text {
     font-weight: 400;
     font-size: 30px;
     line-height: 30px;
-    color: #5e3b60;
+    color: #04CC82;
     margin-bottom: 15px;
     text-transform: capitalize
 }
@@ -3523,7 +3523,8 @@ body.gallery-single-gallery #discography-text {
 }
 
 .grid li {
-    width: 33.333%;
+    /* width: 33.333%; */
+    width: 50%;
     padding: 0 20px 40px;
     float: left;
     cursor: pointer
@@ -3544,16 +3545,19 @@ body.gallery-single-gallery #discography-text {
     -webkit-transition: all .3s ease-out 0s
 }
 
+.grid li:hover figcaption .post-publish-date {
+    color: #fff
+}
 .grid li:hover figcaption h3 {
     color: #fff
 }
 
 .grid li:hover figcaption p {
-    color: #cacaca
+    color: #fff
 }
 
 .grid li:hover figcaption {
-    background-color: #52406e
+    background-color: #04CC82
 }
 
 .grid figcaption {
@@ -3564,7 +3568,27 @@ body.gallery-single-gallery #discography-text {
     transition: all .3s ease-out 0s;
     -webkit-transition: all .3s ease-out 0s
 }
+.pagination-first .page-link:before,
+.pagination-last .page-link:before,
+.pagination-next .page-link:before,
+.pagination-prev .page-link:before {
+    font-family: Material-Design-Iconic-Font;
+    font-size: 1rem;
+}
+.pagination-prev .page-link:before {
+    content: '\f2ff'
+}
 
+.pagination-next .page-link:before {
+    content: '\f301'
+}
+.page-item.active .page-link {
+    background-color: #04CC82;
+    border-color: #04CC82;
+}
+.page-link {
+    color: #04CC82;
+}
 .grid li:nth-of-type(2) .blog-grid-image,
 .grid li:nth-of-type(4) .blog-grid-image,
 .grid li:nth-of-type(5) .blog-grid-image,
@@ -8816,6 +8840,9 @@ body.demo-2-bg {
 }
 
 @media(max-width:1100px) {
+    .grid li {
+        width: 100%;
+    }
     .events_date p {
         margin-bottom: 10px
     }
@@ -9220,7 +9247,7 @@ body.demo-2-bg {
         height: 200px
     }
     .grid li {
-        width: 50%
+        width: 100%
     }
     .row.blog-content {
         display: block

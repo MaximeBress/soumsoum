@@ -8883,16 +8883,16 @@ select::-ms-expand {
 }
 
 .pagination-prev .page-link:before {
-    content: '\f2ff'
+    content: '\f04d'
 }
 
 .pagination-next .page-link:before {
-    content: '\f301'
+    content: '\f054'
 }
 
 .pagination-first .page-link:before,
 .pagination-last .page-link:before {
-    content: '\f302'
+    content: '\f441'
 }
 
 .pagination-first .page-link:before {
@@ -9961,6 +9961,10 @@ optgroup {
     color: rgba(255, 255, 255, .85);
     margin: 0 .3rem .5rem 0;
     transition: border-color .3s
+}
+.tags__body>.active {
+    border: 2px solid rgb(255, 255, 255);
+    color: #fff;
 }
 
 .header,
@@ -11374,12 +11378,16 @@ iframe .page-loader {
     padding: 30px 0;
     border-radius: 2px 2px 0 0
 }
-
+.new-contact__img:hover {
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, .4);
+}
 .new-contact__img {
     border-radius: 50%;
     box-shadow: 0 0 0 5px rgba(255, 255, 255, .08);
     width: 150px;
-    height: 150px
+    height: 150px;
+    transition: background-color .3s;
+    cursor: pointer;
 }
 .jstree-default .jstree-clicked {
     background: rgba(255, 255, 255, .08) !important;
@@ -12291,7 +12299,6 @@ iframe .page-loader {
 .blog__tags {
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, .04);
-    border-bottom: 1px solid rgba(255, 255, 255, .04);
     padding: 2rem 1rem 1.5rem;
     margin: 2rem 0 .5rem
 }

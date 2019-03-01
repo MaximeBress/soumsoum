@@ -135,13 +135,31 @@ class ArtistController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             foreach ($artist->getAlbums() as $key => $album) {
-                $artist->removeAlbum($album);
+                foreach ($album->getArtists() as $key => $artist) {
+                    $artist->removeAlbum($album);
+                }
+                foreach ($album->getSongs() as $key => $song) {
+                    $album->removeSong($song);
+                    $em->remove($song);
+                }
+                if($album->getFolder()) {
+                    $this->delTree($album->getFolder());
+                }
             }
+            unlink($artist->getThumbnailArtist());
             $em->remove($artist);
             $em->flush();
         }
 
         return $this->redirectToRoute('artist_index');
+    }
+    public function delTree($dir)
+    {
+        $files = array_diff(scandir($dir), array('.','..'));
+        foreach ($files as $file) {
+            (is_dir("$dir/$file")) ? self::delTree("$dir/$file") : unlink("$dir/$file");
+        }
+        return rmdir($dir);
     }
 
     /**

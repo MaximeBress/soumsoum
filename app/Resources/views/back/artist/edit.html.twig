@@ -13,9 +13,7 @@
     </header>
     <div class="card">
         <div class="new-contact__header">
-            <a href="javascript:void(0)" id="changeImageThumbnail" class="zmdi zmdi-camera new-contact__upload"></a>
-
-            <img src="{{asset(artist.getThumbnailArtist)}}" class="new-contact__img" alt="">
+            <img src="{{asset(artist.getThumbnailArtist)}}" id="changeImageThumbnail" class="new-contact__img" alt="">
         </div>
         <div class="card-body">
             {{ form_start(edit_form) }}

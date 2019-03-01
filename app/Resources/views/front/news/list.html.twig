@@ -1,199 +1,92 @@
 {% extends "base.html.twig" %}
 {% block title %}News{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+{% endblock %}
 {% block body %}
     <section id="page-title">
-        <div class="global-title wow zoomIn" style="visibility: visible; animation-name: zoomIn;">
+        <div class="global-title wow zoomIn">
             <h1>News</h1>
         </div>
     </section>
-    <section id="news" class="section_6">
+    <section id="standard-blog">
         <div class="section">
-            <div class="news">
-                <div class="row">
-                    <div class="col-4 wow fadeInUpBig">
-                        <a href="{{path('news_show', {'id':1})}}">
-                            <div class="bg_image news_bg_image">
-                                <img src="{{asset('bundles/app/images/malte-wingen-381988-unsplash.jpg')}}" alt="stas-svechnikov">
-                                <div class="overly"></div>
-                            </div>
-                        </a>
-                        <div class="news_content news_content_1">
-                            <a href="{{path('news_show', {'id':1})}}">
-                                <h2>NEW DJ</h2>
-                            </a>
-                            <div class="day_num">
-                                <span>19</span>
-                                <div>
-                                    <p>Dec</p>
-                                    <p>2019</p>
+            <div class="row blog-content">
+                <div class="col-lg-8 col-md-7 post-content">
+                    <section id="blog-grid-gallery">
+                        <div id="grid-gallery" class="grid-gallery">
+                            <section class="grid-wrap section">
+                                <ul class="grid">
+                                    <li class="grid-sizer"></li>
+                                    {% for news in news %}
+                                        <li class="element-item wow fadeInUp {{news.newsType.title|lower}}">
+                                            <a href="{{path('news_show', {'id':news.id})}}">
+                                                <figure>
+                                                    <div class="blog-grid-image">
+                                                        {% if news.getThumbnail %}
+                                                            <img src="{{asset(news.getThumbnail)}}" alt="">
+                                                        {% endif %}
+                                                    </div>
+                                                    <figcaption>
+                                                        <h3>{{news.title}}</h3>
+                                                        <span class="post-publish-date">{{ news.createdAt|date('d/m/Y') }}</span>
+                                                        <div>
+                                                            {{news.description|slice(0,200)|raw}} ...
+                                                        </div>
+                                                    </figcaption>
+                                                </figure>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                                <div class="navigation">
+                                    {{ knp_pagination_render(news) }}
                                 </div>
-                                <p>by admin</p>
-                            </div>
-                            <div class="n_c">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercitation
-                                </p>
-                            </div>
-                            <div class="cta">
-                                <a href="{{path('news_show', {'id':1})}}">Lire la suite</a>
-                            </div>
+                            </section>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-4 col-md-5 hidden-sm-down sitebar">
+                    <!-- <div class="blog-search">
+                        <form class="form-inline md-form mr-auto mb-4">
+                            <input class="mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
+                            <button class="search-btn" type="submit">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div> -->
+                    <div class="blog-categories">
+                        <h2>CATEGORIES</h2>
+                        <div class="p-categories">
+                            <a href="javascript:void(0)" class="categories-line active" data-filter="*">
+                                <span class="c-name">Tout voir</span>
+                                <span class="c-count">{{categories|length}}</span>
+                            </a>
+
+                            {% for category in categories %}
+                                <a href="javascript:void(0)" class="categories-line" data-filter=".{{category.title|lower}}">
+                                    <span class="c-name">{{category.title}}</span>
+                                    <span class="c-count">{{category.news|length}}</span>
+                                </a>
+                            {% endfor %}
                         </div>
                     </div>
-                    <div class="col-4 wow fadeInUp">
-                        <a href="{{path('news_show', {'id':1})}}">
-                            <div class="bg_image news_bg_image">
-                                <img src="{{asset('bundles/app/images/hanny-naibaho-388579-unsplash.jpg')}}" alt="timothy-paul-smith">
-                                <div class="overly"></div>
-                            </div>
-                        </a>
-                        <div class="news_content news_content_2">
-                            <a href="{{path('news_show', {'id':1})}}">
-                                <h2>DRUM FESTIVAL</h2>
-                            </a>
-                            <div class="day_num">
-                                <span>19</span>
-                                <div>
-                                    <p>Dec</p>
-                                    <p>2019</p>
-                                </div>
-                                <p>by admin</p>
-                            </div>
-                            <div class="n_c">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercitation
-                                </p>
-                            </div>
-                            <div class="cta">
-                                <a href="{{path('news_show', {'id':1})}}">Lire la suite</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 wow fadeInUpBig">
-                        <a href="{{path('news_show', {'id':1})}}">
-                            <div class="bg_image news_bg_image">
-                                <img src="{{asset('bundles/app/images/jack-hamilton-135654-unsplash.jpg')}}" alt="george-gvasalia">
-                                <div class="overly"></div>
-                            </div>
-                        </a>
-                        <div class="news_content news_content_3">
-                            <a href="{{path('news_show', {'id':1})}}">
-                                <h2>DARK SIDE</h2>
-                            </a>
-                            <div class="day_num">
-                                <span>19</span>
-                                <div>
-                                    <p>Dec</p>
-                                    <p>2019</p>
-                                </div>
-                                <p>by admin</p>
-                            </div>
-                            <div class="n_c">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercitation
-                                </p>
-                            </div>
-                            <div class="cta">
-                                <a href="{{path('news_show', {'id':1})}}">Lire la suite</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 wow fadeInUpBig">
-                        <a href="{{path('news_show', {'id':1})}}">
-                            <div class="bg_image news_bg_image">
-                                <img src="{{asset('bundles/app/images/malte-wingen-381988-unsplash.jpg')}}" alt="stas-svechnikov">
-                                <div class="overly"></div>
-                            </div>
-                        </a>
-                        <div class="news_content news_content_1">
-                            <a href="{{path('news_show', {'id':1})}}">
-                                <h2>NEW DJ</h2>
-                            </a>
-                            <div class="day_num">
-                                <span>19</span>
-                                <div>
-                                    <p>Dec</p>
-                                    <p>2019</p>
-                                </div>
-                                <p>by admin</p>
-                            </div>
-                            <div class="n_c">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercitation
-                                </p>
-                            </div>
-                            <div class="cta">
-                                <a href="{{path('news_show', {'id':1})}}">Lire la suite</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 wow fadeInUp">
-                        <a href="{{path('news_show', {'id':1})}}">
-                            <div class="bg_image news_bg_image">
-                                <img src="{{asset('bundles/app/images/hanny-naibaho-388579-unsplash.jpg')}}" alt="timothy-paul-smith">
-                                <div class="overly"></div>
-                            </div>
-                        </a>
-                        <div class="news_content news_content_2">
-                            <a href="{{path('news_show', {'id':1})}}">
-                                <h2>DRUM FESTIVAL</h2>
-                            </a>
-                            <div class="day_num">
-                                <span>19</span>
-                                <div>
-                                    <p>Dec</p>
-                                    <p>2019</p>
-                                </div>
-                                <p>by admin</p>
-                            </div>
-                            <div class="n_c">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercitation
-                                </p>
-                            </div>
-                            <div class="cta">
-                                <a href="{{path('news_show', {'id':1})}}">Lire la suite</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 wow fadeInUpBig">
-                        <a href="{{path('news_show', {'id':1})}}">
-                            <div class="bg_image news_bg_image">
-                                <img src="{{asset('bundles/app/images/jack-hamilton-135654-unsplash.jpg')}}" alt="george-gvasalia">
-                                <div class="overly"></div>
-                            </div>
-                        </a>
-                        <div class="news_content news_content_3">
-                            <a href="{{path('news_show', {'id':1})}}">
-                                <h2>DARK SIDE</h2>
-                            </a>
-                            <div class="day_num">
-                                <span>19</span>
-                                <div>
-                                    <p>Dec</p>
-                                    <p>2019</p>
-                                </div>
-                                <p>by admin</p>
-                            </div>
-                            <div class="n_c">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercitation
-                                </p>
-                            </div>
-                            <div class="cta">
-                                <a href="{{path('news_show', {'id':1})}}">Lire la suite</a>
-                            </div>
+                    <div class="blog-recent-post">
+                        <h2>RECENT POSTS</h2>
+                        <div class="p-recent-posts">
+                            {% for news in recent %}
+                                <a href="{{path('news_show', {'id':news.id})}}" class="resent-posts-line">
+                                    {% if news.getThumbnail %}
+                                        <div class="recent-post-image">
+                                            <img src="{{asset(news.getThumbnail)}}" alt="">
+                                        </div>
+                                    {% endif %}
+                                    <div class="recent-post-name">
+                                        <h3>{{news.title}}</h3>
+                                        <span>{{ news.createdAt|date('d/m/Y') }}</span>
+                                    </div>
+                                </a>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -202,6 +95,24 @@
     </section>
 {% endblock %}
 {% block javascripts %}
-    <script>
-    </script>
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<script>
+jQuery(document).ready(function() {
+    var $grid = $('.grid').isotope({
+        itemSelector: '.element-item',
+        layoutMode: 'fitRows'
+    });
+    $('.p-categories').on( 'click', 'a', function() {
+        var filterValue = $( this ).attr('data-filter');
+        $grid.isotope({ filter: filterValue });
+    });
+    $('.p-categories').each( function( i, buttonGroup ) {
+        var $buttonGroup = $( buttonGroup );
+        $buttonGroup.on( 'click', 'a', function() {
+            $buttonGroup.find('.active').removeClass('active');
+            $( this ).addClass('active');
+        });
+    });
+})
+</script>
 {% endblock %}

@@ -98,7 +98,7 @@
                             </a>
                         </li>
                         <li class="">
-                            <a href="javascript:void(0);">
+                            <a href="{{path('news_index')}}">
                                 <i class="zmdi zmdi-newspaper"></i> News
                             </a>
                         </li>
@@ -149,7 +149,14 @@
         <script type="text/javascript">
 
             $(document).ready(function() {
-                init();
+                var location = window.location.href.split('/');
+                $('.sidebar .navigation li a').each(function() {
+                    var url = $(this).attr('href').split('/');
+
+                    if (location[5] == url[3]) {
+                        $(this).closest('li').addClass('navigation__active');
+                    }
+                })
             })
             $( window ).resize(function() {
                 if ($(window).width() < 1200) {
@@ -161,36 +168,6 @@
                     }
                 }
             })
-
-            function init() {
-                var current = location.pathname;
-                $('.sidebar .navigation li a').each(function(){
-                    var $this = $(this);
-                    if($this.attr('href').indexOf(current) !== -1){
-                        $this.closest('li').addClass('navigation__sub--active navigation__sub--toggled');
-                        // $this.closest('.navigation__sub').addClass('navigation__sub--active navigation__sub--toggled');
-                    }
-                })
-                $('.sidebar .navigation__sub .menu_level_1 li a').each(function(){
-                    var $this = $(this);
-                    if($this.attr('href').indexOf(current) !== -1){
-                        $this.closest('li').addClass('navigation__active');
-                        $this.closest('.navigation__sub').addClass('navigation__sub--active navigation__sub--toggled');
-                    }
-                })
-                $('.sidebar .navigation__sub .menu_level_2 li a').each(function(){
-                    var $this = $(this);
-                    if($this.attr('href').indexOf(current) !== -1){
-                        $this.closest('li').addClass('navigation__active');
-                        $this.closest('.navigation__sub').addClass('navigation__sub--active navigation__sub--toggled');
-                        $this.closest('.menu_level_1').closest('.navigation__sub').addClass('navigation__sub--active navigation__sub--toggled');
-                    }
-                })
-                $('.hideNav').on('click', function() {
-                    $('.sidebar').toggleClass('d-none');
-                    $('.content').toggleClass('pl-5');
-                })
-            }
         </script>
 
         {% block javascripts %}{% endblock %}

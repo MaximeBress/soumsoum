@@ -1,0 +1,75 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block body %}
+<header class="content__title">
+    <h1>{{ news.title }}</h1>
+    <small>par {{news.author.completename}} {% if news.createdAt %} le {{ news.createdAt|date('d/m/Y') }}{% endif %}</small>
+
+    <div class="actions">
+        <a href="{{path('news_show', { 'id': news.id })}}" target="_blank" class="actions__item zmdi zmdi-eye" data-toggle="tooltip" data-original-title="Voir en ligne"></a>
+        <a href="{{path('news_edit', { 'id': news.id })}}" class="actions__item zmdi zmdi-pencil" data-toggle="tooltip" data-original-title="Modifier"></a>
+        <a href="javascript:void(0)" class="actions__item zmdi zmdi-delete" data-toggle="modal" data-target="#modal-delete"></a>
+        <a href="{{path('news_index')}}" class="actions__item zmdi zmdi-subdirectory-arrow-left" data-toggle="tooltip" data-original-title="Retour à la liste"></a>
+    </div>
+</header>
+<div class="modal" id="modal-delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title pull-left">Suppression {{news.title}}</h5>
+            </div>
+            <div class="modal-body">
+                Êtes-vous certains de supprimer cette news ?
+            </div>
+            <div class="modal-footer">
+                {{ form_start(delete_form) }}
+                    <input class="btn btn-link" type="submit" value="Supprimer">
+                {{ form_end(delete_form) }}
+                <button type="button" class="btn btn-link" data-dismiss="modal">Annuler</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8 col-md-7">
+        <div class="card">
+            {% if news.getThumbnail %}
+                <img class="card-img-top" src="{{asset(news.getThumbnail)}}" alt="">
+            {% endif %}
+            <div class="card-body">
+                {{news.description|raw}}
+            </div>
+
+            <div class="blog__tags tags">
+                <div class="tags__body">
+                    <a href="javascript:void(0)">#{{news.newsType.title}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-5 hidden-sm-down">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">News en lien</h4>
+                <h6 class="card-subtitle">Article du même auteur</h6>
+            </div>
+
+            <div class="listview listview--hover">
+                {% for article in articles if article.id != news.id %}
+                    <a href="{{ path('news_back_show', { 'id': article.id }) }}" class="listview__item">
+                        {% if news.getThumbnail %}
+                            <img class="listview__img" src="{{asset(article.getThumbnail)}}" alt="">
+                        {% endif %}
+                        <div class="listview__content">
+                            <div class="listview__heading text-truncate">{{article.title}}</div>
+                            {% if article.createdAt %}<p>le {{ article.createdAt|date('d/m/Y') }}</p>{% endif %}
+                        </div>
+                    </a>
+                {% endfor %}
+                <div class="m-4"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

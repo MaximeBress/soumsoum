@@ -178,30 +178,7 @@ class News
                 return $thumb;
             }
         }
-        return false;
-    }
-
-    /**
-     * Set author
-     *
-     * @param \BackBundle\Entity\User $author
-     *
-     * @return News
-     */
-    public function setAuthor(\BackBundle\Entity\User $author = null)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * Get author
-     *
-     * @return \BackBundle\Entity\User
-     */
-    public function getAuthor()
-    {
-        return $this->author;
+        $thumb = 'bundles/back/img/icon-picture.png';
+        return $thumb;
     }
 }

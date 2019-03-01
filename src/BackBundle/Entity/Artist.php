@@ -289,7 +289,7 @@ class Artist
                 return $thumb;
             }
         }
-        $thumb = 'bundles/back/img/icon-person.png';
+        $thumb = 'bundles/back/img/icon-picture.png';
         return $thumb;
     }
 }

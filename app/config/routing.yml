@@ -1,3 +1,7 @@
+back_news:
+    resource: "@BackBundle/Controller/NewsController.php"
+    type:     annotation
+
 back_album:
     resource: "@BackBundle/Controller/AlbumController.php"
     type:     annotation

@@ -16,10 +16,11 @@ class ReleaseController extends Controller
      */
     public function listAction()
     {
+	$em = $this->getDoctrine()->getManager();
         $albums = $em->getRepository('BackBundle:Album')->findAll();
 
         return $this->render('front/releases/list.html.twig', array(
-            'albums' -> $albums
+            'albums' => $albums
         ));
     }
     /**

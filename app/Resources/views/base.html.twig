@@ -248,7 +248,7 @@
                 var location = window.location.href.split('/');
                 $('#header .nav-menu.nav-demo-2 .nav>li>a').each(function() {
                     var url = $(this).attr('href').split('/');
-                    if (location[4] == url[2]) {
+		    if (location[5] == url[3]) {
                         $(this).addClass('active')
                     }
                 })

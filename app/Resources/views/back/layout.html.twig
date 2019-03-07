@@ -152,8 +152,7 @@
                 var location = window.location.href.split('/');
                 $('.sidebar .navigation li a').each(function() {
                     var url = $(this).attr('href').split('/');
-
-                    if (location[5] == url[3]) {
+                    if (location[6] == url[4]) {
                         $(this).closest('li').addClass('navigation__active');
                     }
                 })

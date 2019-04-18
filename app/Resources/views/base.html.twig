@@ -68,9 +68,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{path('about')}}">about</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="{{path('store')}}">store</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{path('contact')}}">contact</a>
                     </li>
@@ -108,9 +108,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{path('about')}}">about</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="{{path('store')}}">store</a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link" href="{{path('contact')}}">contact</a>
                             </li>
@@ -245,10 +245,10 @@
         <div class="grid" style="display:none;"></div>
         <script>
             $(document).ready(function() {
-                var location = window.location.href.split('/');
+                var location = window.location.href;
                 $('#header .nav-menu.nav-demo-2 .nav>li>a').each(function() {
-                    var url = $(this).attr('href').split('/');
-		    if (location[5] == url[3]) {
+                    var url = $(this).attr('href');
+                    if (location.includes(url)) {
                         $(this).addClass('active')
                     }
                 })

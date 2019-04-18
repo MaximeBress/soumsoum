@@ -1,0 +1,52 @@
+{% extends 'back/layout.html.twig' %}
+{% block top_stylesheet %}
+{% endblock %}
+{% block body %}
+<header class="content__title">
+    <h1>Liste des events</h1>
+
+    <div class="actions">
+        <a href="{{ path('events_new') }}" class="actions__item zmdi zmdi-plus" data-toggle="tooltip" data-title="Ajouter un event"></a>
+    </div>
+</header>
+<div class="card">
+    <div class="listview listview--bordered issue-tracker">
+        {% for event in events %}
+            <div class="listview__item">
+                <img src="{{asset(event.getThumbnail)}}" class="listview__img hidden-sm-down" alt="">
+
+                <div class="listview__content text-truncate text-truncate">
+                    <a class="listview__heading" href="{{ path('events_show', { 'id': event.id }) }}">{{ event.name }}</a>
+                    <!-- <p>{{ event.description|raw }}</p> -->
+                </div>
+
+                <div class="issue-tracker__item">
+                    <span class="issue-tracker__tag bg-primary">{{ event.location }}</span>
+                </div>
+
+                <div class="issue-tracker__item hidden-lg-down">
+                    <i class="zmdi zmdi-time"></i>{% if event.startAt %}{{ event.startAt|date('d/m/Y') }} à {{ event.startAt|date('H:i') }} {% endif %}
+                </div>
+
+                <div class="issue-tracker__item actions">
+                    <div class="dropdown actions__item">
+                        <i class="zmdi zmdi-dots-vertical" data-toggle="dropdown"></i>
+
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu--active dropdown-menu--icon">
+                            <a href="{{ path('events_show', { 'id': event.id }) }}" class="dropdown-item">Voir</a>
+                            <a href="{{ path('events_edit', { 'id': event.id }) }}" class="dropdown-item">Modifier</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+<script>
+$(document).ready(function() {
+    $('.dataTable').DataTable()
+})
+</script>
+{% endblock %}

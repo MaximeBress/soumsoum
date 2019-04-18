@@ -103,15 +103,15 @@
                             </a>
                         </li>
                         <li class="">
-                            <a href="javascript:void(0);">
+                            <a href="{{path('events_index')}}">
                                 <i class="zmdi zmdi-calendar"></i> Events
                             </a>
                         </li>
-                        <li class="">
+                        <!-- <li class="">
                             <a href="javascript:void(0);">
                                 <i class="zmdi zmdi-store"></i> Store
                             </a>
-                        </li>
+                        </li> -->
                         <li class="">
                             <a href="http://byrushan.com/projects/super-admin/app/2.1.2/index.html" target="_blank">
                                 <i class="zmdi zmdi-palette"></i> Template
@@ -149,10 +149,10 @@
         <script type="text/javascript">
 
             $(document).ready(function() {
-                var location = window.location.href.split('/');
+                var location = window.location.href;
                 $('.sidebar .navigation li a').each(function() {
-                    var url = $(this).attr('href').split('/');
-                    if (location[6] == url[4]) {
+                    var url = $(this).attr('href');
+                    if (location.includes(url)) {
                         $(this).closest('li').addClass('navigation__active');
                     }
                 })

@@ -31,13 +31,6 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="imagePath", type="string", length=255)
-     */
-    private $imagePath;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
@@ -59,14 +52,14 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="youtubePath", type="string", length=255)
+     * @ORM\Column(name="youtubePath", type="string", length=255, nullable=true)
      */
     private $youtubePath;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="facebookPath", type="string", length=255)
+     * @ORM\Column(name="facebookPath", type="string", length=255, nullable=true)
      */
     private $facebookPath;
 
@@ -103,30 +96,6 @@ class Event
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set imagePath
-     *
-     * @param string $imagePath
-     *
-     * @return Event
-     */
-    public function setImagePath($imagePath)
-    {
-        $this->imagePath = $imagePath;
-
-        return $this;
-    }
-
-    /**
-     * Get imagePath
-     *
-     * @return string
-     */
-    public function getImagePath()
-    {
-        return $this->imagePath;
     }
 
     /**
@@ -248,5 +217,20 @@ class Event
     {
         return $this->facebookPath;
     }
+    public function getWebPath()
+    {
+        return 'asset/events/thumbnail/';
+    }
+    public function getThumbnail()
+    {
+        $extensions = array('png','jpg','jpeg');
+        foreach($extensions AS $ext){
+            $thumb = $this->getWebPath().$this->id.'.'.$ext;
+            if(is_file($thumb)){
+                return $thumb;
+            }
+        }
+        $thumb = 'bundles/back/img/icon-picture.png';
+        return $thumb;
+    }
 }
-

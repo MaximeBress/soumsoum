@@ -1,3 +1,7 @@
+back_event:
+    resource: "@BackBundle/Controller/EventController.php"
+    type:     annotation
+
 back_news:
     resource: "@BackBundle/Controller/NewsController.php"
     type:     annotation

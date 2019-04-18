@@ -1,49 +1,80 @@
 {% extends 'back/layout.html.twig' %}
 {% block top_stylesheet %}
 <link rel="stylesheet" href="{{ asset('bundles/back/css/trumbowyg.min.css') }}">
+<link rel="stylesheet" href="{{ asset('bundles/back/css/flatpickr.min.css') }}">
 <link rel="stylesheet" href="{{ asset('bundles/back/css/select2.min.css') }}">
 <link rel="stylesheet" href="{{ asset('bundles/back/js/trumbowyg/colors/colors.css') }}">
 {% endblock %}
-
 {% block body %}
 <div class="content__inner content__inner--sm">
     <header class="content__title">
-        <h1>Modification de {{news.title}}</h1>
+        <h1>Création d'un nouvel event</h1>
         <div class="actions">
-            <a href="{{ path('news_back_show', { 'id': news.id }) }}" class="actions__item zmdi zmdi-close" data-toggle="tooltip" data-placement="top" data-original-title="Annuler"></a>
+            <a href="{{path('events_index')}}" class="actions__item zmdi zmdi-close" data-toggle="tooltip" data-placement="top" data-original-title="Annuler"></a>
         </div>
     </header>
     <div class="card">
         <div class="new-contact__header">
-            <img src="{{asset(news.getThumbnail)}}" id="changeImageThumbnail" class="new-contact__img" alt="">
+            <img src="{{asset('bundles/back/img/icon-picture.png')}}" id="changeImageThumbnail" class="new-contact__img" alt="">
         </div>
         <div class="card-body">
-            {{ form_start(edit_form) }}
+            {{ form_start(form) }}
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            {{ form_widget(edit_form.newsType) }}
+                            {{ form_widget(form.name) }}
                             <i class="form-group__bar"></i>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            {{ form_widget(edit_form.title) }}
+                            {{ form_widget(form.location) }}
                             <i class="form-group__bar"></i>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            {{ form_widget(edit_form.description) }}
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                                <div class="form-group">
+                                    {{ form_widget(form.startAt) }}
+                                    <i class="form-group__bar"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            {{ form_widget(form.description) }}
                             <i class="form-group__bar"></i>
                         </div>
                     </div>
-                </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="zmdi zmdi-youtube-play"></i></span>
+                            <div class="form-group">
+                                {{ form_widget(form.youtubePath) }}
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="zmdi zmdi-facebook"></i></span>
+                            <div class="form-group">
+                                {{ form_widget(form.facebookPath) }}
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
                 </div>
                 <div class="mt-5 text-center">
                     <input class="btn btn-light" type="submit" value="Enregistrer" />
                 </div>
-            {{ form_end(edit_form) }}
+            {{ form_end(form) }}
         </div>
     </div>
 </div>
@@ -52,16 +83,23 @@
 <script src="{{ asset('bundles/back/js/trumbowyg/trumbowyg.min.js') }}"></script>
 <script src="{{ asset('bundles/back/js/trumbowyg/colors/trumbowyg.colors.js') }}"></script>
 <script src="{{ asset('bundles/back/js/trumbowyg/fr.min.js') }}"></script>
+<script src="{{ asset('bundles/back/js/flatpickr.min.js') }}"></script>
+<script src="{{ asset('bundles/back/js/flatpickr-fr.js') }}"></script>
 <script src="{{ asset('bundles/back/js/select2.full.min.js') }}"></script>
 <script>
 jQuery(document).ready(function() {
-    $('#backbundle_news_newsType').select2({
-        placeholder: "Sélectionner un type de news"
-    })
     $('#changeImageThumbnail').on('click',function() {
-        $('#backbundle_news_image').trigger('click');
+        $('#backbundle_event_image').trigger('click');
     });
-    $("#backbundle_news_description").trumbowyg({
+    $("#backbundle_event_startAt").flatpickr({
+        locale: "fr",
+        altFormat: "F j, Y",
+        enableTime: true,
+        dateFormat: "d/m/Y H:i",
+        nextArrow: '<i class="zmdi zmdi-arrow-right" />',
+        prevArrow: '<i class="zmdi zmdi-arrow-left" />'
+    })
+    $("#backbundle_event_description").trumbowyg({
         svgPath: "{{asset('bundles/back/js/trumbowyg/icons.svg')}}",
         lang: "fr",
         btns: [

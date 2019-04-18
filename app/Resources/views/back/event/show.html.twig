@@ -1,0 +1,124 @@
+{% extends 'back/layout.html.twig' %}
+{% block top_stylesheet %}
+<style>
+    #map {
+        width: 100%;
+        height: 400px;
+        background-color: grey;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="content__inner content__inner--sm">
+    <header class="content__title">
+        <h1>{{event.name}}</h1>
+        <div class="actions">
+            <a href="{{path('event_show', { 'id': event.id })}}" target="_blank" class="actions__item zmdi zmdi-eye" data-toggle="tooltip" data-original-title="Voir en ligne"></a>
+            <a href="{{path('events_edit', { 'id': event.id })}}" class="actions__item zmdi zmdi-pencil" data-toggle="tooltip" data-original-title="Modifier"></a>
+            <a href="javascript:void(0)" class="actions__item zmdi zmdi-delete" data-toggle="modal" data-target="#modal-delete"></a>
+            <a href="{{path('events_index')}}" class="actions__item zmdi zmdi-subdirectory-arrow-left" data-toggle="tooltip" data-original-title="Retour à la liste"></a>
+        </div>
+    </header>
+    <div class="modal" id="modal-delete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title pull-left">Suppression {{event.name}}</h5>
+                </div>
+                <div class="modal-body">
+                    Êtes-vous certains de supprimer cet artiste ?
+                </div>
+                <div class="modal-footer">
+                    {{ form_start(delete_form) }}
+                        <input class="btn btn-link" type="submit" value="Supprimer">
+                    {{ form_end(delete_form) }}
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Annuler</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card profile">
+        <div class="profile__img">
+            <img src="{{asset(event.getThumbnail)}}" alt="">
+        </div>
+
+        <div class="profile__info">
+            <ul class="icon-list">
+                {% if event.facebookPath %}
+                    <li>
+                        <i class="zmdi zmdi-facebook"></i>
+                        <a href="{{event.facebookPath}}" target="_blank">
+                            {{event.facebookPath}}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if event.startAt %}
+                    <li>
+                        <i class="zmdi zmdi-calendar"></i>
+                        {{event.startAt|date('d/m/Y')}} à {{event.startAt|date('H:i')}}
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="tab-container">
+                <ul class="nav nav-tabs nav-fill" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#desc" role="tab">Description</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#youtube" role="tab">Youtube</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#location" role="tab">Lieu</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active fade show" id="desc" role="tabpanel">
+                        {{event.description|raw}}
+                    </div>
+                    <div class="tab-pane fade" id="youtube" role="tabpanel">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="{{event.youtubePath}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="location" role="tabpanel">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+<script>
+var map;
+var service;
+var infowindow;
+function initMap() {
+    var geocoder = new google.maps.Geocoder();
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 0, lng: 0},
+        zoom: 8
+    });
+    var location = "{{event.location}}";
+
+    geocoder.geocode({'address': location}, function(results, status) {
+        if (status === 'OK') {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                position: results[0].geometry.location,
+                map: map
+            });
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
+}
+
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPMhrtr-ZoUndocwHmp9cehhVg_4EcwgI&callback=initMap" type="text/javascript"></script>
+{% endblock %}

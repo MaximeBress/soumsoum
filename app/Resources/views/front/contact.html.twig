@@ -13,10 +13,34 @@
             </div>
         </div>
         <div class="form">
-            <form>
+            {{ form_start(form) }}
                 <div class="row fild_1">
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="name">
+                        {{ form_errors(form.name) }}
+                        {{ form_widget(form.name) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_errors(form.email) }}
+                        {{ form_widget(form.email) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_errors(form.message) }}
+                    {{ form_widget(form.message) }}
+                </div>
+
+                {# Render CSRF token etc .#}
+                <div style="display:none">
+                    {{ form_rest(form) }}
+                </div>
+
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+
+            {{ form_end(form) }}
+            <!-- <form>
+                <div class="row fild_1">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="Nom">
                     </div>
                     <div class="col-sm-6">
                         <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
@@ -26,7 +50,7 @@
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Message"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Send</button>
-            </form>
+            </form> -->
         </div>
     </div>
 </section>

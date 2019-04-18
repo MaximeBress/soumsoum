@@ -1,45 +1,55 @@
 {% extends "base.html.twig" %}
-{% block title %}Coachella Music Festival{% endblock %}
+{% block title %}{{event.name}}{% endblock %}
+{% block stylesheets %}
+<style>
+    #map {
+        width: 100%;
+        height: 400px;
+        background-color: grey;
+    }
+</style>
+{% endblock %}
 {% block body %}
 <section id="page-title">
     <div class="global-title wow zoomIn">
-        <h1>Coachella Music Festival</h1>
+        <h1>{{event.name}}</h1>
     </div>
 </section>
 <section id="events-banner">
     <div class="section">
         <div class="slider-info">
             <div class="events-slider">
-                <img class="" src="{{asset('bundles/app/images/austin-edwards-679508-unsplash.jpg')}}" alt="First slide">
+                <img class="" src="{{asset(event.getThumbnail)}}" alt="{{event.name}}">
             </div>
             <div class="events-info">
                 <div class="events_date">
-                    <p>
-                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                        <span>August 20, 2019</span>
-                    </p>
-                    <p>
-                        <i class="fa fa-clock-o" aria-hidden="true"></i>
-                        <span>9:15 pm</span>
-                    </p>
+                    {% if event.startAt %}
+                        <p>
+                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                            <span>{{ event.startAt|localizeddate('none', 'none', null, null, 'd MMMM Y')}} </span>
+                        </p>
+                        <p>
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            <span>{{ event.startAt|date('H:i') }}</span>
+                        </p>
+                    {% endif %}
                     <p>
                         <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <span>Indio, California</span>
+                        <span>{{ event.location }}</span>
                     </p>
                     <p>
                         <i class="fa fa-location-arrow" aria-hidden="true"></i>
-                        <span>Coachella Music Festival</span>
+                        <span>{{event.name}}</span>
                     </p>
                 </div>
                 <div class="event-tickets">
                     <a href="javascript:void(0);">Buy Ticket</a>
-                    <a href="javascript:void(0);">EVENT ON FACEBOOK</a>
+                    <a href="{{event.facebookPath}}" target="_blank">EVENT ON FACEBOOK</a>
                 </div>
                 <div class="event-text">
                     <div class="single-events-text">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcos laboris nisis ut aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse cillum dolore egiat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore egiat
+                            {{event.description|raw}}
                         </p>
                     </div>
                     <div class="social-icons">
@@ -68,17 +78,42 @@
         <img src="{{asset('bundles/app/images/edwin-andrade-158050-unsplash.jpg')}}" alt="">
     </div>
     <div class="section">
-        <div class="embed-responsive embed-responsive-16by9">
-            <div class="youtube" id="2in8XqiElwc" data-src="{{asset('bundles/app/images/dane-deaner-305151-unsplash.jpg')}}"><img src="resources/images/tyler-nix-488905-unsplash.png" class="thumb">
-                <div class="play"></div>
+        <div class="video">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="{{event.youtubePath}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
         <section id="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d89283.54984309021!2d-116.33181576651593!3d33.73430483012885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80daf43543dfd785%3A0x166ce7cda7235031!2sIndio%2C+CA!5e0!3m2!1sen!2s!4v1537283723514" allowfullscreen=""></iframe>
         </section>
     </div>
 </section>
 {% endblock %}
 {% block javascripts %}
-    <script></script>
+<script>
+var map;
+var service;
+var infowindow;
+function initMap() {
+    var geocoder = new google.maps.Geocoder();
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 0, lng: 0},
+        zoom: 8
+    });
+    var location = "{{event.location}}";
+
+    geocoder.geocode({'address': location}, function(results, status) {
+        if (status === 'OK') {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                position: results[0].geometry.location,
+                map: map
+            });
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
+}
+
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPMhrtr-ZoUndocwHmp9cehhVg_4EcwgI&callback=initMap" type="text/javascript"></script>
 {% endblock %}
